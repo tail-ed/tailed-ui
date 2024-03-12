@@ -1,0 +1,32 @@
+{
+  "name": "@sarimsyed/shadcn-custom",
+  "version": "0.0.0",
+  "description": "Modified shadcn components for more customization options and minor bug fixes.",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "files": [
+    "dist"
+  ],
+  "types": "dist/types/index.d.ts",
+  "scripts": {
+    "rollup": "rollup -c"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
+  },
+  "author": "Sarim Syed",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/react": "^18.2.65",
+    "react": "^18.2.0",
+    "rollup": "^4.13.0",
+    "rollup-plugin-dts": "^6.1.0",
+    "tslib": "^2.6.2",
+    "typescript": "^5.4.2"
+  }
+}
