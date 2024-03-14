@@ -23,34 +23,41 @@ const init = new Command()
 
         //Copying components
         console.log('Copying components...');
-        const sourceDir = path.join(__dirname, 'src');
-        const destDir = path.join(process.cwd(), 'src');
-        const files = await fs.readdir(sourceDir);
-        for (const file of files) {
-            if (file !== 'stories') {
-                const sourceFile = path.join(sourceDir, file);
-                const destFile = path.join(destDir, file);
-                if (await fs.pathExists(destFile)) {
-                    const answer = await new Promise((resolve) => {
-                        rl.question(`File ${destFile} already exists. Overwrite? (y/n) `, resolve);
-                    });
-                    if (answer.toLowerCase() !== 'y') {
-                        continue;
+        try {
+
+            const sourceDir = path.join(__dirname, 'src');
+            const destDir = path.join(process.cwd(), 'src');
+            const files = await fs.readdir(sourceDir);
+            for (const file of files) {
+                if (file !== 'stories') {
+                    const sourceFile = path.join(sourceDir, file);
+                    const destFile = path.join(destDir, file);
+                    if (await fs.pathExists(destFile)) {
+                        const answer = await new Promise((resolve) => {
+                            rl.question(`File ${destFile} already exists. Overwrite? (y/n) `, resolve);
+                        });
+                        if (answer.toLowerCase() !== 'y') {
+                            continue;
+                        }
+                        await fs.copy(sourceFile, destFile);
                     }
-                    await fs.copy(sourceFile, destFile);
                 }
             }
-        }
 
-        //Install dependencies
-        console.log('Installing dependencies...');
-        const packageJson = await fs.readFile(path.join(__dirname, 'package.json'), 'utf8');
-        const packageData = JSON.parse(packageJson);
-        const dependencies = Object.keys(packageData.dependencies)
-            .filter(dep => !['autoprefixer', 'postcss'].includes(dep))
-            .join(' ');
-        execSync(`npm install ${dependencies}`, { stdio: 'inherit' });
-        console.log('shadcn-custom installed!');
-        rl.close();
+            //Install dependencies
+            console.log('Installing dependencies...');
+            const packageJson = await fs.readFile(path.join(__dirname, 'package.json'), 'utf8');
+            const packageData = JSON.parse(packageJson);
+            const dependencies = Object.keys(packageData.dependencies)
+                .filter(dep => !['autoprefixer', 'postcss'].includes(dep))
+                .join(' ');
+            execSync(`npm install ${dependencies}`, { stdio: 'inherit' });
+            console.log('shadcn-custom installed!');
+            rl.close();
+        }
+        catch (error) {
+            console.error('Failed to copy components:', error);
+            process.exit(1);
+        }
     });
 init.parse(process.argv);

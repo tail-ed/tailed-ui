@@ -1,7 +1,7 @@
 {
   "name": "@sarimsyed/shadcn-custom",
-  "version": "0.0.6",
-  "bin":{
+  "version": "0.0.7",
+  "bin": {
     "init": "./init.js"
   },
   "description": "Modified shadcn components for more customization options and minor bug fixes.",
