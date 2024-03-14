@@ -57,10 +57,20 @@ const init = new Command()
                 .filter(dep => !['fs-extra'].includes(dep))
                 .join(' ');
             for (const dependency of dependencies) {
-                execSync(`npm install ${dependency}`, { stdio: 'inherit' });
+                try {
+                    require.resolve(dependency);
+                    console.log(`${dependency} is already installed, skipping it...`);
+                }
+                catch (error) {
+                    console.log(`${dependency} is not installed, installing now...`);
+                    execSync(`npm install ${dependency}`, { stdio: 'inherit' });
+
+                }
+
             }
             console.log('shadcn-custom installed!');
             rl.close();
+
         }
         catch (error) {
             console.error('Failed to copy components:', error);
