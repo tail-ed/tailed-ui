@@ -27,13 +27,21 @@ const init = new Command()
     .description('Initialize shadcn-custom package')
     .action(async () => {
         console.log('Initializing shadcn-custom package...');
-
+        //Getting directory structure from user
+        const directoryQuestion = [{
+            type: 'list',
+            name: 'directory',
+            message: 'Which project structure are you using? (src = new, app = old):',
+            choices: ['src', 'app'],
+        }];
+        const directoryAnswer = await inquirer.prompt(directoryQuestion);
+        const directory = directoryAnswer.directory === 'src' ? 'src' : './';
         //Copying components
         console.log('Copying components...');
         try {
 
             const sourceDir = path.join(__dirname, 'src');
-            const destDir = path.join(process.cwd(), 'src');
+            const destDir = path.join(process.cwd(), directory);
             const files = await fs.readdir(sourceDir);
             for (const file of files) {
                 console.log('file:', file);
@@ -50,10 +58,37 @@ const init = new Command()
                         console.log(chalk.greenBright(`${file} Copying...`));
                         await fs.copy(sourceFile, destFile);
                     }
-                    //If no duplicate file, copy the file
-                    console.log(chalk.greenBright(`${file} Copying...`));
+                    else {
+
+                        //If no duplicate file, copy the file
+                        console.log(chalk.greenBright(`${file} Copying...`));
+                        await fs.copy(sourceFile, destFile);
+                    }
+                }
+            }
+
+            // Copy tailwind.config.js
+            const fileName = 'tailwind.config.js';
+
+            // Define the source file path and the destination file path
+            const sourceFile = path.join(__dirname, fileName);
+            const destFile = path.join(destDir, fileName);
+
+            // Check if the destination file already exists
+            if (await fs.pathExists(destFile)) {
+                const answer = await new Promise((resolve) => {
+                    rl.question(`File ${fileName} already exists. Overwrite? (y/n) `, resolve);
+                });
+                if (answer.toLowerCase() !== 'y') {
+                    console.log(`Skipping ${fileName}...`);
+                } else {
+                    console.log(chalk.greenBright(`${fileName} Copying...`));
                     await fs.copy(sourceFile, destFile);
                 }
+            } else {
+                // If no duplicate file, copy the file
+                console.log(chalk.greenBright(`${fileName} Copying...`));
+                await fs.copy(sourceFile, destFile);
             }
 
             //Install dependencies
@@ -63,7 +98,7 @@ const init = new Command()
             const packageData = JSON.parse(packageJson);
             //dependencies listed in user's package.json
             const installedPackageData = await fs.readFile(path.join(process.cwd(), 'package.json'), 'utf8');
-            const installedPackageDataJSON = JSON.parse(installedDependenciesJson);
+            const installedPackageDataJSON = JSON.parse(installedPackageData);
 
             const dependencies = Object.keys(packageData.dependencies)
                 .filter(dep => !['fs-extra', 'inquirer', 'chalk'].includes(dep) && dep.trim() !== '');
