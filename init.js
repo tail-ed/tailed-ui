@@ -36,6 +36,7 @@ const init = new Command()
         }];
         const directoryAnswer = await inquirer.prompt(directoryQuestion);
         const directory = directoryAnswer.directory === 'src' ? 'src' : './';
+        console.log('Directory:', directory);
         //Copying components
         console.log('Copying components...');
         try {
@@ -50,19 +51,38 @@ const init = new Command()
                     const destFile = path.join(destDir, file);
                     if (await fs.pathExists(destFile)) {
                         const answer = await new Promise((resolve) => {
-                            rl.question(`File ${file} already exists. Overwrite? (y/n) `, resolve);
+                            try {
+
+                                rl.question(`File ${file} already exists. Overwrite? (y/n) `, resolve);
+                            }
+                            catch (error) {
+                                console.error('Failed to overwrite file:', error);
+
+                            }
                         });
                         if (answer.toLowerCase() !== 'y') {
                             continue;
                         }
                         console.log(chalk.greenBright(`${file} Copying...`));
-                        await fs.copy(sourceFile, destFile);
+                        try {
+
+                            await fs.copy(sourceFile, destFile);
+                        }
+                        catch (error) {
+                            console.error('Failed to copy file:', error);
+                        }
                     }
                     else {
 
                         //If no duplicate file, copy the file
-                        console.log(chalk.greenBright(`${file} Copying...`));
-                        await fs.copy(sourceFile, destFile);
+                        try {
+                            console.log(chalk.greenBright(`${file} Copying...`));
+                            await fs.copy(sourceFile, destFile);
+
+                        }
+                        catch (error) {
+                            console.error('Failed to copy file:', error);
+                        }
                     }
                 }
             }
@@ -72,7 +92,11 @@ const init = new Command()
 
             // Define the source file path and the destination file path
             const sourceFile = path.join(__dirname, fileName);
-            const destFile = path.join(destDir, fileName);
+            let destFile = path.join(destDir, fileName);
+
+            if (directory === 'src') {
+                destFile = `../${destFile}`;
+            }
 
             // Check if the destination file already exists
             if (await fs.pathExists(destFile)) {
@@ -90,6 +114,35 @@ const init = new Command()
                 console.log(chalk.greenBright(`${fileName} Copying...`));
                 await fs.copy(sourceFile, destFile);
             }
+            //postcss.config
+
+            const postcss = 'tailwind.config.js';
+
+            // Define the source file path and the destination file path
+            const postcssSource = path.join(__dirname, postcss);
+            let postcssDest = path.join(destDir, postcss);
+
+            if (directory === 'src') {
+                postcssDest = `../${postcssDest}`;
+            }
+
+            // Check if the destination file already exists
+            if (await fs.pathExists(postcssDest)) {
+                const answer = await new Promise((resolve) => {
+                    rl.question(`File ${postcss} already exists. Overwrite? (y/n) `, resolve);
+                });
+                if (answer.toLowerCase() !== 'y') {
+                    console.log(`Skipping ${postcss}...`);
+                } else {
+                    console.log(chalk.greenBright(`${postcss} Copying...`));
+                    await fs.copy(postcssSource, postcssDest);
+                }
+            } else {
+                // If no duplicate file, copy the file
+                console.log(chalk.greenBright(`${postcss} Copying...`));
+                await fs.copy(postcssSource, postcssDest);
+            }
+
 
             //Install dependencies
             console.log('Installing dependencies...');

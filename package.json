@@ -1,13 +1,14 @@
 {
   "name": "@sarimsyed/shadcn-custom",
-  "version": "0.1.8",
+  "version": "0.2.3",
   "bin": {
     "init": "./init.js"
   },
   "description": "Modified shadcn components for more customization options and minor bug fixes.",
   "main": "dist/cjs/index.js",
   "files": [
-    "src"
+    "src",
+    "tailwind.config.js"
   ],
   "types": "dist/index.d.ts",
   "type": "module",
