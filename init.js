@@ -5,17 +5,12 @@ import { execSync } from 'child_process';
 import fs from 'fs-extra';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import readline from 'readline';
 import inquirer from 'inquirer';
 import chalk from 'chalk';
 
 
 console.log("The script is running");
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
 
-});
 console.log("setting dir variables...");
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -53,7 +48,6 @@ const init = new Command()
             const destDir = path.join(process.cwd(), directory);
             const files = await fs.readdir(sourceDir);
             for (const file of files) {
-                console.log('file:', file);
                 if (file !== 'stories') {
                     const sourceFile = path.join(sourceDir, file);
                     const destFile = path.join(destDir, file);
@@ -117,9 +111,6 @@ const init = new Command()
             const postcssSource = path.join(__dirname, postcss);
             let postcssDest = path.join(process.cwd(), postcss);
 
-            if (directory === 'src') {
-                postcssDest = `../${postcssDest}`;
-            }
 
             // Check if the destination file already exists
             if (await fs.pathExists(postcssDest)) {
@@ -180,7 +171,7 @@ const init = new Command()
             }
 
             console.log('shadcn-custom installed!');
-            rl.close();
+
 
         }
         catch (error) {
