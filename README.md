@@ -38,16 +38,11 @@ Create a `.npmrc` file a the root of your project and paste the following:
 //npm.pkg.github.com/:_authToken=YOUR_TOKEN
 ```
 
-~~~ npm i @sarimsyed/shadcn-custom@latest  to install~~~
-
-~~~ You can specify the version after the "@" sign for a specific version, but at this point the older versions are useless and I highly recommend keeping up to date. ~~~
-
-
+You can specify the version after the "@" sign for a specific version, but at this point the older versions are useless and I highly recommend keeping up to date. 
 
 #### Update:
 
 Package has been completely changed. Now to use this library run:
-
 
 ```bash
 pnpx @sarimsyed/shadcn-custom init
