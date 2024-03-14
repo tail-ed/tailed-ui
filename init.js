@@ -58,8 +58,13 @@ const init = new Command()
 
             //Install dependencies
             console.log('Installing dependencies...');
+            //Dependencies listed in package.json
             const packageJson = await fs.readFile(path.join(__dirname, 'package.json'), 'utf8');
             const packageData = JSON.parse(packageJson);
+            //dependencies listed in user's package.json
+            const installedPackageData = await fs.readFile(path.join(process.cwd(), 'package.json'), 'utf8');
+            const installedPackageDataJSON = JSON.parse(installedDependenciesJson);
+
             const dependencies = Object.keys(packageData.dependencies)
                 .filter(dep => !['fs-extra', 'inquirer', 'chalk'].includes(dep) && dep.trim() !== '');
 
@@ -76,12 +81,18 @@ const init = new Command()
             const packageManager = answers.packageManager;
             for (const dependency of dependencies) {
                 try {
-                    require.resolve(dependency);
-                    console.log(`${dependency} is already installed, skipping it...`);
+                    if (installedPackageDataJSON.dependencies.hasOwnProperty(dependency)) {
+                        console.log(chalk.green(`${dependency} is already installed, skipping it...`));
+
+                    }
+                    else {
+                        console.log(chalk.yellow(`${dependency} is not installed, installing now...`));
+                        execSync(`${packageManager} install ${dependency}`, { stdio: 'inherit' });
+                    }
                 }
                 catch (error) {
-                    console.log(`${dependency} is not installed, installing now...`);
-                    execSync(`${packageManager} install ${dependency}`, { stdio: 'inherit' });
+
+                    console.error(`Failed to install ${dependency}:`, error);
 
                 }
 
