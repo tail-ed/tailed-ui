@@ -6,6 +6,7 @@ import fs from 'fs-extra';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import readline from 'readline';
+import inquirer from 'inquirer';
 
 
 console.log("The script is running");
@@ -30,10 +31,11 @@ const init = new Command()
         console.log('Copying components...');
         try {
 
-            const sourceDir = path.join(__dirname, '/src');
-            const destDir = path.join(process.cwd(), '/src');
+            const sourceDir = path.join(__dirname, 'src');
+            const destDir = path.join(process.cwd(), 'src');
             const files = await fs.readdir(sourceDir);
             for (const file of files) {
+                console.log('file:', file);
                 if (file !== 'stories') {
                     const sourceFile = path.join(sourceDir, file);
                     const destFile = path.join(destDir, file);
@@ -46,6 +48,8 @@ const init = new Command()
                         }
                         await fs.copy(sourceFile, destFile);
                     }
+                    //If no duplicate file, copy the file
+                    await fs.copy(sourceFile, destFile);
                 }
             }
 
@@ -54,20 +58,32 @@ const init = new Command()
             const packageJson = await fs.readFile(path.join(__dirname, 'package.json'), 'utf8');
             const packageData = JSON.parse(packageJson);
             const dependencies = Object.keys(packageData.dependencies)
-                .filter(dep => !['fs-extra'].includes(dep) && dep.trim() !== '')
-                .join(' ');
-            for (const dependency of dependencies) {
-                try {
-                    require.resolve(dependency);
-                    console.log(`${dependency} is already installed, skipping it...`);
-                }
-                catch (error) {
-                    console.log(`${dependency} is not installed, installing now...`);
-                    execSync(`npm install ${dependency}`, { stdio: 'inherit' });
+                .filter(dep => !['fs-extra' || 'inquirer'].includes(dep) && dep.trim() !== '');
+
+            console.log('dependencies:', dependencies);
+            //Getting choice of package manager from user
+            const questions = [{
+                type: 'list',
+                name: 'packageManager',
+                message: 'Which package manager do you want to use?',
+                choices: ['npm', 'yarn', 'pnpm'],
+            }];
+
+            inquirer.prompt(questions).then((answers) => {
+                const packageManager = answers.packageManager;
+                for (const dependency of dependencies) {
+                    try {
+                        require.resolve(dependency);
+                        console.log(`${dependency} is already installed, skipping it...`);
+                    }
+                    catch (error) {
+                        console.log(`${dependency} is not installed, installing now...`);
+                        execSync(`${packageManager} install ${dependency}`, { stdio: 'inherit' });
+
+                    }
 
                 }
-
-            }
+            });
             console.log('shadcn-custom installed!');
             rl.close();
 

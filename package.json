@@ -1,6 +1,6 @@
 {
   "name": "@sarimsyed/shadcn-custom",
-  "version": "0.1.1",
+  "version": "0.1.4",
   "bin": {
     "init": "./init.js"
   },
@@ -60,6 +60,7 @@
     "clsx": "^2.1.0",
     "flowbite": "^2.3.0",
     "fs-extra": "^11.2.0",
+    "inquirer": "^9.2.16",
     "lucide-react": "^0.356.0",
     "postcss": "^8.4.35",
     "radix-ui": "^1.0.1",
