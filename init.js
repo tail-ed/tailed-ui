@@ -7,6 +7,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import readline from 'readline';
 import inquirer from 'inquirer';
+import chalk from 'chalk';
 
 
 console.log("The script is running");
@@ -41,14 +42,16 @@ const init = new Command()
                     const destFile = path.join(destDir, file);
                     if (await fs.pathExists(destFile)) {
                         const answer = await new Promise((resolve) => {
-                            rl.question(`File ${destFile} already exists. Overwrite? (y/n) `, resolve);
+                            rl.question(`File ${file} already exists. Overwrite? (y/n) `, resolve);
                         });
                         if (answer.toLowerCase() !== 'y') {
                             continue;
                         }
+                        console.log(chalk.greenBright(`${file} Copying...`));
                         await fs.copy(sourceFile, destFile);
                     }
                     //If no duplicate file, copy the file
+                    console.log(chalk.greenBright(`${file} Copying...`));
                     await fs.copy(sourceFile, destFile);
                 }
             }
@@ -58,7 +61,7 @@ const init = new Command()
             const packageJson = await fs.readFile(path.join(__dirname, 'package.json'), 'utf8');
             const packageData = JSON.parse(packageJson);
             const dependencies = Object.keys(packageData.dependencies)
-                .filter(dep => !['fs-extra' || 'inquirer'].includes(dep) && dep.trim() !== '');
+                .filter(dep => !['fs-extra', 'inquirer', 'chalk'].includes(dep) && dep.trim() !== '');
 
             console.log('dependencies:', dependencies);
             //Getting choice of package manager from user
