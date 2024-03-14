@@ -69,21 +69,21 @@ const init = new Command()
                 choices: ['npm', 'yarn', 'pnpm'],
             }];
 
-            inquirer.prompt(questions).then((answers) => {
-                const packageManager = answers.packageManager;
-                for (const dependency of dependencies) {
-                    try {
-                        require.resolve(dependency);
-                        console.log(`${dependency} is already installed, skipping it...`);
-                    }
-                    catch (error) {
-                        console.log(`${dependency} is not installed, installing now...`);
-                        execSync(`${packageManager} install ${dependency}`, { stdio: 'inherit' });
-
-                    }
+            const answers = await inquirer.prompt(questions);
+            const packageManager = answers.packageManager;
+            for (const dependency of dependencies) {
+                try {
+                    require.resolve(dependency);
+                    console.log(`${dependency} is already installed, skipping it...`);
+                }
+                catch (error) {
+                    console.log(`${dependency} is not installed, installing now...`);
+                    execSync(`${packageManager} install ${dependency}`, { stdio: 'inherit' });
 
                 }
-            });
+
+            }
+
             console.log('shadcn-custom installed!');
             rl.close();
 
