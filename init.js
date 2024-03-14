@@ -20,6 +20,14 @@ console.log("setting dir variables...");
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+function getShouldOverwriteQuestion(file) {
+
+    return [{
+        type: 'confirm',
+        name: 'shouldOverwrite',
+        message: `File ${file} already exists. Overwrite?`,
+    }]
+};
 
 //Command
 const init = new Command()
@@ -49,23 +57,14 @@ const init = new Command()
                 if (file !== 'stories') {
                     const sourceFile = path.join(sourceDir, file);
                     const destFile = path.join(destDir, file);
+
                     if (await fs.pathExists(destFile)) {
-                        const answer = await new Promise((resolve) => {
-                            try {
-
-                                rl.question(`File ${file} already exists. Overwrite? (y/n) `, resolve);
-                            }
-                            catch (error) {
-                                console.error('Failed to overwrite file:', error);
-
-                            }
-                        });
-                        if (answer.toLowerCase() !== 'y') {
+                        const answer = await inquirer.prompt(getShouldOverwriteQuestion(file));
+                        if (answer.shouldOverwrite === false) {
                             continue;
                         }
                         console.log(chalk.greenBright(`${file} Copying...`));
                         try {
-
                             await fs.copy(sourceFile, destFile);
                         }
                         catch (error) {
@@ -92,18 +91,14 @@ const init = new Command()
 
             // Define the source file path and the destination file path
             const sourceFile = path.join(__dirname, fileName);
-            let destFile = path.join(destDir, fileName);
+            let destFile = path.join(process.cwd(), fileName);
 
-            if (directory === 'src') {
-                destFile = `../${destFile}`;
-            }
+
 
             // Check if the destination file already exists
             if (await fs.pathExists(destFile)) {
-                const answer = await new Promise((resolve) => {
-                    rl.question(`File ${fileName} already exists. Overwrite? (y/n) `, resolve);
-                });
-                if (answer.toLowerCase() !== 'y') {
+                const answer = await inquirer.prompt(getShouldOverwriteQuestion(fileName));
+                if (answer.shouldOverwrite === false) {
                     console.log(`Skipping ${fileName}...`);
                 } else {
                     console.log(chalk.greenBright(`${fileName} Copying...`));
@@ -116,11 +111,11 @@ const init = new Command()
             }
             //postcss.config
 
-            const postcss = 'tailwind.config.js';
+            const postcss = 'postcss.config.js';
 
             // Define the source file path and the destination file path
             const postcssSource = path.join(__dirname, postcss);
-            let postcssDest = path.join(destDir, postcss);
+            let postcssDest = path.join(process.cwd(), postcss);
 
             if (directory === 'src') {
                 postcssDest = `../${postcssDest}`;
@@ -128,10 +123,8 @@ const init = new Command()
 
             // Check if the destination file already exists
             if (await fs.pathExists(postcssDest)) {
-                const answer = await new Promise((resolve) => {
-                    rl.question(`File ${postcss} already exists. Overwrite? (y/n) `, resolve);
-                });
-                if (answer.toLowerCase() !== 'y') {
+                const answer = await inquirer.prompt(getShouldOverwriteQuestion(postcss));
+                if (answer.shouldOverwrite === false) {
                     console.log(`Skipping ${postcss}...`);
                 } else {
                     console.log(chalk.greenBright(`${postcss} Copying...`));
