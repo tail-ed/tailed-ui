@@ -54,9 +54,11 @@ const init = new Command()
             const packageJson = await fs.readFile(path.join(__dirname, 'package.json'), 'utf8');
             const packageData = JSON.parse(packageJson);
             const dependencies = Object.keys(packageData.dependencies)
-                .filter(dep => !['autoprefixer', 'postcss'].includes(dep))
+                .filter(dep => !['fs-extra'].includes(dep))
                 .join(' ');
-            execSync(`npm install ${dependencies}`, { stdio: 'inherit' });
+            for (const dependency of dependencies) {
+                execSync(`npm install ${dependency}`, { stdio: 'inherit' });
+            }
             console.log('shadcn-custom installed!');
             rl.close();
         }
