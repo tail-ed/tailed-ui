@@ -1,17 +1,22 @@
-#!/usr.bin/env node
+#!/usr/bin/env node
 // File: init.js
 import { Command } from 'commander';
 import { execSync } from 'child_process';
 import fs from 'fs-extra';
 import path from 'path';
-import { read } from 'fs';
+import { fileURLToPath } from 'url';
+import readline from 'readline';
 
 
+console.log("The script is running");
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 
 });
+console.log("setting dir variables...");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 
 //Command
@@ -25,8 +30,8 @@ const init = new Command()
         console.log('Copying components...');
         try {
 
-            const sourceDir = path.join(__dirname, 'src');
-            const destDir = path.join(process.cwd(), 'src');
+            const sourceDir = path.join(__dirname, '/src');
+            const destDir = path.join(process.cwd(), '/src');
             const files = await fs.readdir(sourceDir);
             for (const file of files) {
                 if (file !== 'stories') {

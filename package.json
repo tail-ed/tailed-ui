@@ -1,13 +1,13 @@
 {
   "name": "@sarimsyed/shadcn-custom",
-  "version": "0.1.0",
+  "version": "0.0.14",
   "bin": {
     "init": "./init.js"
   },
   "description": "Modified shadcn components for more customization options and minor bug fixes.",
   "main": "dist/cjs/index.js",
   "files": [
-    "dist"
+    "src"
   ],
   "types": "dist/index.d.ts",
   "type": "module",
