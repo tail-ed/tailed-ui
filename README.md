@@ -18,14 +18,14 @@ I use the classic token because it's easier but the newer repo specific tokens s
 
 @
 
-<img src="file:///C:/Users/asari/AppData/Roaming/marktext/images/2024-03-13-00-55-30-image.png" title="" alt="" data-align="center">
+<img src="./imgs/1.png" title="github profile dropdown" alt="github profile dropdown screenshot" data-align="center">
 
-Then scroll down until you reach "Developper Settings"
+Then scroll down until you reach "Developer Settings"
 
-<img src="file:///C:/Users/asari/AppData/Roaming/marktext/images/2024-03-13-00-58-45-image.png" title="" alt="" data-align="center">
+<img src="./imgs/2.png" title="github profile developer settings screenshot" alt="github profile developer settings screenshot" data-align="center">
 
 In there under Personal Access Token click either of the options. In my case I chose the classic option.
-<img src="file:///C:/Users/asari/AppData/Roaming/marktext/images/2024-03-13-00-59-49-image.png" title="" alt="" data-align="center">
+<img src="./imgs/3.png" title="github tokens menu" alt="github tokens menu screenshot" data-align="center">
 
 From here it should be pretty self explanatory, you can limit the access code to just read in order to avoid having too much access to your account.
 
@@ -38,10 +38,19 @@ Create a `.npmrc` file a the root of your project and paste the following:
 //npm.pkg.github.com/:_authToken=YOUR_TOKEN
 ```
 
-Now you can run the `npm install` command to install the package:
+~~~ npm i @sarimsyed/shadcn-custom@latest  to install~~~
+
+~~~ You can specify the version after the "@" sign for a specific version, but at this point the older versions are useless and I highly recommend keeping up to date. ~~~
+
+
+
+#### Update:
+
+Package has been completely changed. Now to use this library run:
+
 
 ```bash
-npm i @sarimsyed/shadcn-custom@latest
+pnpx @sarimsyed/shadcn-custom init
 ```
 
-You can specify the version after the "@" sign for a specific version, but at this point the older versions are useless and I highly recommend keeping up to date.
+This will launch a cli that will download all dependencies and components to your project directory.
