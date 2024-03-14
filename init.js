@@ -54,7 +54,7 @@ const init = new Command()
             const packageJson = await fs.readFile(path.join(__dirname, 'package.json'), 'utf8');
             const packageData = JSON.parse(packageJson);
             const dependencies = Object.keys(packageData.dependencies)
-                .filter(dep => !['fs-extra'].includes(dep))
+                .filter(dep => !['fs-extra'].includes(dep) && dep.trim() !== '')
                 .join(' ');
             for (const dependency of dependencies) {
                 try {
