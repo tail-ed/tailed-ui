@@ -48,4 +48,4 @@ Package has been completely changed. Now to use this library run:
 pnpx @sarimsyed/shadcn-custom init
 ```
 
-This will launch a cli that will download all dependencies and components to your project directory.
+This will launch a cli script that will download all dependencies and components to your project directory. It's been updated to ask whether or not certain files should be overwritten in order to avoid losing files and causing errors and config files are also now included.

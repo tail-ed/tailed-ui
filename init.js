@@ -7,7 +7,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import inquirer from 'inquirer';
 import chalk from 'chalk';
-
+import { devDependencies } from './bin/devDependencies';
 
 console.log("The script is running");
 
@@ -15,6 +15,7 @@ console.log("setting dir variables...");
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+//Function to get user input for overwriting files
 function getShouldOverwriteQuestion(file) {
 
     return [{
@@ -89,7 +90,7 @@ const init = new Command()
 
 
 
-            // Check if the destination file already exists
+            // Check if the destination file already exists and ask the user if they want to overwrite it
             if (await fs.pathExists(destFile)) {
                 const answer = await inquirer.prompt(getShouldOverwriteQuestion(fileName));
                 if (answer.shouldOverwrite === false) {
@@ -136,6 +137,8 @@ const init = new Command()
             //dependencies listed in user's package.json
             const installedPackageData = await fs.readFile(path.join(process.cwd(), 'package.json'), 'utf8');
             const installedPackageDataJSON = JSON.parse(installedPackageData);
+            //dev dependencies
+
 
             const dependencies = Object.keys(packageData.dependencies)
                 .filter(dep => !['fs-extra', 'inquirer', 'chalk'].includes(dep) && dep.trim() !== '');
@@ -168,6 +171,21 @@ const init = new Command()
 
                 }
 
+            }
+            //dev dependencies install
+            try {
+                devDependencies.map(dependency => {
+                    if (installedPackageDataJSON.devDependencies.hasOwnProperty(dependency)) {
+                        console.log(chalk.green(`${dependency} is already installed, skipping it...`));
+                    }
+                    else {
+                        console.log(chalk.yellow(`${dependency} is not installed, installing now...`));
+                        execSync(`${packageManager} install ${dependency} -D`, { stdio: 'inherit' });
+                    }
+                });
+            }
+            catch (error) {
+                console.error(`Failed to install devDependencies:`, error);
             }
 
             console.log('shadcn-custom installed!');
