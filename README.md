@@ -1,6 +1,7 @@
 # shadcn-custom
 
-Planned to be modified version of shadcn components that are easily importable and have slight more customization. Currently package contains a simple button which takes in a label property which sets the value of the value displayed on the button. Plan to add custom components to this package and allow them to be installed/copied into the system using ``` npx shadcn-custom``` and correctly configure it how shadcn works. Plan on making this a private package but it is public for testing purposes.
+Planned to be modified version of shadcn components that are easily importable and have slight more customization. Currently package contains a simple button which takes in a label property which sets the value of the value displayed on the button. Plan to add custom components to this package and allow them to be installed/copied into the system using ``` npx shadcn-custom``` and correctly configure it how shadcn works. ~~Plan on making this a private package but it is public for testing purposes.~~
+It was private but it is now public.
 
 ## Changes from default shadcn
 
@@ -10,13 +11,19 @@ Certain components now have variants. The variants can be appended in the compon
 
 ## How to download
 
+Package is no longer private so the instructions below are not needed. Can be simply installed by running:
+```bash
+pnpx @sarimsyed/shadcn-custom init
+```
+
+<hr/>
+
 This is a private npm package so to install it a few extra steps are required, this is the same case for any other private package:
 
 ### 1. Generate a GitHub access token.
 
 I use the classic token because it's easier but the newer repo specific tokens should work too. To generate one go to your profile settings. Or if you are signed in your browser already you can click this link: [Sign in to GitHub · GitHub](https://github.com/settings/profile). 
 
-@
 
 <img src="./imgs/1.png" title="github profile dropdown" alt="github profile dropdown screenshot" data-align="center">
 
