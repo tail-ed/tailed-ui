@@ -1,7 +1,9 @@
 # shadcn-custom
 
 Planned to be modified version of shadcn components that are easily importable and have slight more customization. Currently package contains a simple button which takes in a label property which sets the value of the value displayed on the button. Plan to add custom components to this package and allow them to be installed/copied into the system using ``` npx shadcn-custom``` and correctly configure it how shadcn works. ~~Plan on making this a private package but it is public for testing purposes.~~
-It was private but it is now public.
+It was private but it is now public. Will probably rename it.
+
+**Download the latest version as older versions are filled with bugs or don't work**
 
 ## Changes from default shadcn
 
