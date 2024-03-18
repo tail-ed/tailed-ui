@@ -262,7 +262,7 @@ const init = new Command()
             console.log('Installing radix ui optional libraries...');
 
             installDependencies(packageManager, radixui, false);
-
+            console.log(('Restart typescript server if you see errors!'));
             console.log(chalk.greenBright('shadcn-custom installed🎉🎉🎉!'));
 
 
