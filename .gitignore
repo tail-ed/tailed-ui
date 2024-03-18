@@ -133,3 +133,4 @@ node_modules
 .vscode
 
 *storybook.log
+scriptTest

@@ -5,6 +5,8 @@ import dts from "rollup-plugin-dts";
 import packageJson from "./package.json" assert { type: "json" };
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 
+//Currently not in use
+
 export default [
     {
         input: 'src/index.ts',

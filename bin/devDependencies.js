@@ -1,6 +1,6 @@
 
-export const devDependencies = [
+module.exports = [
     "autoprefixer",
-    "tailwindcss",
+
     "typescript"
 ]
