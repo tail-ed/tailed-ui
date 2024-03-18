@@ -14,6 +14,7 @@ Certain components now have variants. The variants can be appended in the compon
 ## How to download
 
 Package is no longer private so the instructions below are not needed. Can be simply installed by running:
+
 ```bash
 pnpx @sarimsyed/shadcn-custom init
 ```
@@ -26,15 +27,14 @@ This is a private npm package so to install it a few extra steps are required, t
 
 I use the classic token because it's easier but the newer repo specific tokens should work too. To generate one go to your profile settings. Or if you are signed in your browser already you can click this link: [Sign in to GitHub · GitHub](https://github.com/settings/profile). 
 
-
-<img src="./imgs/1.png" title="github profile dropdown" alt="github profile dropdown screenshot" data-align="center">
+<img title="github profile dropdown" src="https://i.ibb.co/bJ3jh0z/1.png" alt="github profile dropdown screenshot" data-align="center">
 
 Then scroll down until you reach "Developer Settings"
 
-<img src="./imgs/2.png" title="github profile developer settings screenshot" alt="github profile developer settings screenshot" data-align="center">
+<img title="github profile developer settings screenshot" src="https://i.ibb.co/JqZ7n5W/2.png" alt="github profile developer settings screenshot" data-align="center">
 
 In there under Personal Access Token click either of the options. In my case I chose the classic option.
-<img src="./imgs/3.png" title="github tokens menu" alt="github tokens menu screenshot" data-align="center">
+<img title="github tokens menu" src="https://i.ibb.co/525c7yh/3.png" alt="github tokens menu screenshot" data-align="center">
 
 From here it should be pretty self explanatory, you can limit the access code to just read in order to avoid having too much access to your account.
 
