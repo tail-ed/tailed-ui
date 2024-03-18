@@ -15,9 +15,8 @@
   "type": "module",
   "scripts": {
     "rollup": "rollup -c --bundleConfigAsCjs",
-    "build": "tsc",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build": "tsc"
+
   },
   "publishConfig": {
     "access": "public",
@@ -32,27 +31,16 @@
   "author": "Sarim Syed",
   "license": "ISC",
   "devDependencies": {
-    "@chromatic-com/storybook": "^1.2.18",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
-    "@storybook/addon-essentials": "^8.0.0",
-    "@storybook/addon-interactions": "^8.0.0",
-    "@storybook/addon-links": "^8.0.0",
-    "@storybook/addon-onboarding": "^8.0.0",
-    "@storybook/addon-postcss": "^2.0.0",
-    "@storybook/blocks": "^8.0.0",
-    "@storybook/react": "^8.0.0",
-    "@storybook/react-vite": "^8.0.0",
-    "@storybook/test": "^8.0.0",
     "@types/react": "^18.2.65",
     "autoprefixer": "^10.4.18",
     "react": "^18.2.0",
     "rollup": "^4.13.0",
     "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "storybook": "^8.0.0",
     "tslib": "^2.6.2",
     "typescript": "^5.4.2"
   },
@@ -67,7 +55,7 @@
     "fs-extra": "^11.2.0",
     "inquirer": "^9.2.16",
     "lucide-react": "^0.356.0",
-    "postcss": "^8.4.35",
+    "postcss": ">=8.4.31",
     "radix-ui": "^1.0.1",
     "react-hook-form": "^7.51.0",
     "tailwind-merge": "^2.2.1",
