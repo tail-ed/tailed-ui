@@ -1,6 +1,0 @@
-
-module.exports = [
-    "autoprefixer",
-
-    "typescript"
-]
