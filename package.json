@@ -1,8 +1,8 @@
 {
   "name": "@sarimsyed/shadcn-custom",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "bin": {
-    "init": "./init.js"
+    "init": "init.js"
   },
   "description": "Modified shadcn components for more customization options and minor bug fixes.",
   "main": "dist/cjs/index.js",
@@ -16,11 +16,6 @@
   "scripts": {
     "rollup": "rollup -c --bundleConfigAsCjs",
     "build": "tsc"
-
-  },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.pkg.github.com"
   },
   "keywords": [
     "shadcn",

@@ -5,6 +5,10 @@ It was private but it is now public. Will probably rename it.
 
 **Download the latest version as older versions are filled with bugs or don't work**
 
+### LATEST UPDATE 0.3.1:
+
+Everything is working as I intended it to run. The main way of importing these files should be with npx/pnpx/etc and by running the init command so that files are copies locally and can be modified to your liking. Package has been published on NPM so you no longer need to specify github as its location and no token is required to download/copy these files.
+
 ## Changes from default shadcn
 
 There was a bug with raddix-ui which caused the popover to not display certain components like a combobox properly, the dropdown would not be clickable as the click was being registered behind it. I modified it so that theres a context for dialog that lets the popover know to render inside a div instead of the popoverPrimitive thats used by default. This was done to fix that bug while avoiding any possible bugs that could arise from the change,
@@ -13,10 +17,10 @@ Certain components now have variants. The variants can be appended in the compon
 
 ## How to download
 
-Package is no longer private so the instructions below are not needed. Can be simply installed by running:
+Package is no longer private so the instructions below are not needed. Can be simply installed by running with the package manager of your choice:
 
 ```bash
-pnpx @sarimsyed/shadcn-custom init
+pnpm @sarimsyed/shadcn-custom init
 ```
 
 <hr/>
