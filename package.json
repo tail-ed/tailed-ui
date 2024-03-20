@@ -1,6 +1,6 @@
 {
   "name": "@sarimsyed/shadcn-custom",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "bin": {
     "init": "init.js"
   },
