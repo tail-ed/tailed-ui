@@ -1,7 +1,7 @@
 # shadcn-custom
 
 Planned to be modified version of shadcn components that are easily importable and have slight more customization. Currently package contains a simple button which takes in a label property which sets the value of the value displayed on the button. Plan to add custom components to this package and allow them to be installed/copied into the system using ``` npx shadcn-custom``` and correctly configure it how shadcn works. ~~Plan on making this a private package but it is public for testing purposes.~~
-It was private but it is now public. Will probably rename it.
+It was private but it is now public. Will probably rename it. Relies on packages like raddix-ui and tailwind which will also be installed.
 
 **Download the latest version as older versions are filled with bugs or don't work**
 
@@ -17,48 +17,25 @@ Certain components now have variants. The variants can be appended in the compon
 
 ## How to download
 
-Package is no longer private so the instructions below are not needed. Can be simply installed by running with the package manager of your choice:
-
-```bash
-pnpm @sarimsyed/shadcn-custom init
-```
-
-<hr/>
-
-This is a private npm package so to install it a few extra steps are required, this is the same case for any other private package:
-
-### 1. Generate a GitHub access token.
-
-I use the classic token because it's easier but the newer repo specific tokens should work too. To generate one go to your profile settings. Or if you are signed in your browser already you can click this link: [Sign in to GitHub · GitHub](https://github.com/settings/profile). 
-
-<img title="github profile dropdown" src="https://i.ibb.co/bJ3jh0z/1.png" alt="github profile dropdown screenshot" data-align="center">
-
-Then scroll down until you reach "Developer Settings"
-
-<img title="github profile developer settings screenshot" src="https://i.ibb.co/JqZ7n5W/2.png" alt="github profile developer settings screenshot" data-align="center">
-
-In there under Personal Access Token click either of the options. In my case I chose the classic option.
-<img title="github tokens menu" src="https://i.ibb.co/525c7yh/3.png" alt="github tokens menu screenshot" data-align="center">
-
-From here it should be pretty self explanatory, you can limit the access code to just read in order to avoid having too much access to your account.
-
-### 2. Add account info into your project
-
-Create a `.npmrc` file a the root of your project and paste the following:
-
-```
-@sarimsyed:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=YOUR_TOKEN
-```
-
-You can specify the version after the "@" sign for a specific version, but at this point the older versions are useless and I highly recommend keeping up to date. 
-
-#### Update:
-
-Package has been completely changed. Now to use this library run:
+Package is no longer private and has been published on NPM instead of just GitHub so installing it is simpler now. The recommended way is by running the command below. Should be compatible with npm and yarn as well.
 
 ```bash
 pnpx @sarimsyed/shadcn-custom init
 ```
 
-This will launch a cli script that will download all dependencies and components to your project directory. It's been updated to ask whether or not certain files should be overwritten in order to avoid losing files and causing errors and config files are also now included.
+<hr/>
+
+## Configuring the lib/utils.ts file
+
+If you already have a utils.ts file in a lib folder, then the cli will skip copying that file to avoid overwriting any existing code, instead you should add the following lines to it. If they already exist then you dont need to follow this step:
+
+
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+```

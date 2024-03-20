@@ -95,15 +95,17 @@ function getShouldOverwriteQuestion(file) {
 
 function installDependencies(packageManager, dependencies, isDev = false) {
     let installCommand = `${packageManager} install `;
+    let installedPkgs = installedPackageDataJSON.dependencies;
     if (isDev) {
         installCommand += '-D';
+        installedPkgs = installedPackageDataJSON.devDependencies;
     }
 
 
     for (const dependency of dependencies) {
         try {
 
-            if (installedPackageDataJSON.devDependencies.hasOwnProperty(dependency)) {
+            if (installedPkgs.hasOwnProperty(dependency)) {
                 console.log(chalk.green(`${dependency} is already installed, skipping it...`));
             }
             else {
@@ -142,10 +144,33 @@ const init = new Command()
             const files = await fs.readdir(sourceDir);
             for (const file of files) {
                 if (file !== 'stories') {
+
                     const sourceFile = path.join(sourceDir, file);
                     const destFile = path.join(destDir, file);
 
-                    if (await fs.pathExists(destFile)) {
+
+                    if (file === 'lib') {
+                        const libFiles = await fs.readdir(sourceFile);
+                        for (const libFile of libFiles) {
+                            const libSourceFile = path.join(sourceFile, libFile);
+                            const libDestFile = path.join(destFile, libFile);
+                            const exists = await fs.pathExists(libDestFile);
+                            console.log(`Checking if ${libFile} exists: ${exists}`);
+                            if (exists) {
+
+                                console.log(chalk.cyan(`Skipping ${libFile} as it already exists, follow the instructions in README to configure it properly...`));
+                                continue;
+                            }
+
+                            // Copy libFile...
+                            try {
+                                console.log(chalk.greenBright(`Copying ${libFile}...`));
+                                await fs.copy(libSourceFile, libDestFile);
+                            } catch (error) {
+                                console.error(`Failed to copy ${libFile}:`, error);
+                            }
+                        }
+                    } else if (await fs.pathExists(destFile)) {
                         const answer = await inquirer.prompt(getShouldOverwriteQuestion(file));
                         if (answer.shouldOverwrite === false) {
                             continue;
