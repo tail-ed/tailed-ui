@@ -5,7 +5,7 @@ It was private but it is now public. Will probably rename it. Relies on packages
 
 **Download the latest version as older versions are filled with bugs or don't work**
 
-### LATEST UPDATE 0.3.1:
+### LATEST UPDATE:
 
 Everything is working as I intended it to run. The main way of importing these files should be with npx/pnpx/etc and by running the init command so that files are copies locally and can be modified to your liking. Package has been published on NPM so you no longer need to specify github as its location and no token is required to download/copy these files.
 
