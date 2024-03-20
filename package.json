@@ -1,6 +1,6 @@
 {
-  "name": "@sarimsyed/shadcn-custom",
-  "version": "0.3.6",
+  "name": "@tail-ed/shadcn-tailed",
+  "version": "0.0.1",
   "bin": {
     "init": "init.js"
   },
@@ -21,7 +21,8 @@
     "shadcn",
     "tailwindcss",
     "react",
-    "components"
+    "components",
+    "tailed"
   ],
   "author": "Sarim Syed",
   "license": "ISC",
