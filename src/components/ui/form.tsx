@@ -39,6 +39,7 @@ const FormField = <
     </FormFieldContext.Provider>
   )
 }
+FormField.displayName = "FormField"
 //Custom FormField component that forwards ref
 const ForwardedFormField = React.forwardRef(<
   TFieldValues extends FieldValues = FieldValues,
@@ -54,6 +55,7 @@ ref: React.Ref<any>
     </FormFieldContext.Provider>
   )
 });
+ForwardedFormField.displayName = "ForwardedFormField";
 
 const useFormField = () => {
   const fieldContext = React.useContext(FormFieldContext)
@@ -77,6 +79,7 @@ const useFormField = () => {
     ...fieldState,
   }
 }
+useFormField.displayName = "useFormField"
 
 type FormItemContextValue = {
   id: string
