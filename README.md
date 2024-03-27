@@ -1,6 +1,6 @@
 # shadcn-tailed
 
-Planned to be modified version of shadcn components that are easily importable and have slight more customization. Currently package contains a simple button which takes in a label property which sets the value of the value displayed on the button. Plan to add custom components to this package and allow them to be installed/copied into the system using ``` npx @tail-ed/shadcn-tailed``` and correctly configure it how shadcn works.It was private but it is now public. Relies on packages like raddix-ui and tailwind which will also be installed.
+Planned to be modified version of shadcn components that are easily importable and have slight more customization. Currently package contains a simple button which takes in a label property which sets the value of the value displayed on the button. Plan to add custom components to this package and allow them to be installed/copied into the system using ```npx @tail-ed/shadcn-tailed``` and correctly configure it how shadcn works.It was private but it is now public. Relies on packages like raddix-ui and tailwind which will also be installed.
 
 **Download the latest version as older versions are filled with bugs or don't work**
 
