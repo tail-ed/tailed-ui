@@ -63,7 +63,7 @@ const radixui = [
     '@radix-ui/react-use-size',
     '@radix-ui/react-visually-hidden',
     '@radix-ui/rect',
-    '@radix-ui/names.txt',
+    '@radix-ui/names',
     '@radix-ui/number',
     '@radix-ui/primitive',
     '@radix-ui/react-accessible-icon',
