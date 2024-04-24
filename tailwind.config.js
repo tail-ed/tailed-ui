@@ -1,4 +1,4 @@
-const { fontFamily } = require("tailwindcss/defaultTheme")
+const { fontFamily } = require("tailwindcss/defaultTheme");
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
@@ -51,7 +51,6 @@ module.exports = {
         "Segoe UI Symbol",
         "Noto Color Emoji",
       ],
-
     },
     transparent: "transparent",
     current: "currentColor",
@@ -127,14 +126,25 @@ module.exports = {
           },
         },
         // shadcn
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        border: "var(--border)",
+        // border: "hsl(var(--border))",
+        input: "var(--input)",
+        // input: "hsl(var(--input))",
+        ring: "var(--ring)",
+        // ring: "hsl(var(--ring))",
+        background: "var(--background)",
+        // background: "hsl(var(--background))",
+        foreground: "var(--foreground)",
+        // foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "var(--primary)",
+          // DEFAULT: "hsl(var(--primary))",
+          foreground: "var(--primary-foreground)",
+          // foreground: "hsl(var(--primary-foreground))",
+          hover: "var(--primary-hover)",
+          // hover: "hsl(var(--primary-hover))",
+          ring: "var(--ring)",
+          // hover: "hsl(var(--ring))",
           50: "#eff6ff",
           100: "#dbeafe",
           200: "#bfdbfe",
@@ -148,35 +158,50 @@ module.exports = {
           950: "#172554",
         },
         input_grey: {
-          DEFAULT: "hsl(var(--input-grey))",
+          DEFAULT: "var(--input-grey)",
+          // DEFAULT: "hsl(var(--input-grey))",
         },
         modal: {
-          DEFAULT: "hsl(var(--modal))",
-          border: "hsl(var(--modal-border))",
+          DEFAULT: "var(--modal)",
+          // DEFAULT: "hsl(var(--modal))",
+          border: "var(--modal-border)",
+          // border: "hsl(var(--modal-border))",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "var(--secondary)",
+          // DEFAULT: "hsl(var(--secondary))",
+          foreground: "var(--secondary-foreground)",
+          // foreground: "hsl(var(--secondary-foreground))",
         },
         destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
+          DEFAULT: "var(--destructive)",
+          // DEFAULT: "hsl(var(--destructive))",
+          foreground: "var(--destructive-foreground)",
+          // foreground: "hsl(var(--destructive-foreground))",
         },
         muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          DEFAULT: "var(--muted)",
+          // DEFAULT: "hsl(var(--muted))",
+          foreground: "var(--muted-foreground)",
+          // foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: "var(--accent)",
+          // DEFAULT: "hsl(var(--accent))",
+          foreground: "var(--accent-foreground)",
+          // foreground: "hsl(var(--accent-foreground))",
         },
         popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
+          DEFAULT: "var(--popover)",
+          // DEFAULT: "hsl(var(--popover))",
+          foreground: "var(--popover-foreground)",
+          // foreground: "hsl(var(--popover-foreground))",
         },
         card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+          DEFAULT: "var(--card)",
+          // DEFAULT: "hsl(var(--card))",
+          foreground: "var(--card-foreground)",
+          // foreground: "hsl(var(--card-foreground))",
         },
       },
       borderRadius: {
@@ -207,15 +232,15 @@ module.exports = {
         // light
         "tremor-input": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
         "tremor-card":
-          "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+            "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
         "tremor-dropdown":
-          "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+            "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
         // dark
         "dark-tremor-input": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
         "dark-tremor-card":
-          "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+            "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
         "dark-tremor-dropdown":
-          "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+            "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
       },
       fontSize: {
         "tremor-label": "0.75rem",
@@ -226,5 +251,4 @@ module.exports = {
     },
   },
   plugins: [require("tailwindcss-animate"), require("flowbite/plugin")],
-}
-
+};

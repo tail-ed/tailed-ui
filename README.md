@@ -36,3 +36,8 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 ```
+
+## Testing the package
+
+```nmp run build-storybook```
+```npm run storybook```

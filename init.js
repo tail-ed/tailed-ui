@@ -223,7 +223,7 @@ const init = new Command()
             }
             //postcss.config
 
-            const postcss = 'postcss.config.js';
+            const postcss = 'postcss.config.cjs';
 
             // Define the source file path and the destination file path
             const postcssSource = path.join(__dirname, postcss);
