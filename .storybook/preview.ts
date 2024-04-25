@@ -1,7 +1,7 @@
 import type { Preview } from "@storybook/react";
 import '../src/styles/globals.css'
-import { useEffect } from 'react';
-import { StoryFn } from '@storybook/react';
+import {withThemeByClassName} from '@storybook/addon-themes'
+
 
 const preview: Preview = {
   parameters: {
@@ -12,6 +12,16 @@ const preview: Preview = {
       },
     },
   },
+  decorators: [
+    withThemeByClassName({
+      themes:{
+        light:'',
+        dark:'dark',
+      },
+      defaultTheme:'light'
+    })
+
+  ],
 };
 export const parameters = {
   // ...
@@ -30,13 +40,5 @@ export const parameters = {
   },
   // ...
 };
-export const decorators = [
-  (Story: StoryFn, context) => {
-    useEffect(() => {
-      document.documentElement.classList.toggle('dark', context.globals.backgrounds.value === '#000000');
-    }, [context.globals.backgrounds.value]);
 
-    return <Story />;
-  },
-];
 export default preview;

@@ -14,12 +14,12 @@ jobs:
         node-version: '14'
         registry-url: 'https://registry.npmjs.org'
     - run: npm install
+    - run: npm version patch
     - name: Commit changes
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git commit -am "Update package-lock.json"
-    - run: npm version patch
     - run: npm publish
       env:
         NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
