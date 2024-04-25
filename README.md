@@ -37,7 +37,17 @@ export function cn(...inputs: ClassValue[]) {
 }
 ```
 
-## Testing the package
+# Testing your components with storybook
 
-```nmp run build-storybook```
-```npm run storybook```
+Storybook and its dependencies should already be installed as a dev dependency after `npm install` is run.
+
+## Using storybook
+Storybook can be run by running
+```
+npm run storybook
+```
+This should open a browser window and display: 
+
+![image](https://i.ibb.co/wwq004c/storybook.png)
+
+On the left side is where each story that's been created is displayed and they can be viewed by being clicked.
