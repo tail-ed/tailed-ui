@@ -19,13 +19,13 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add package-lock.json
-        git commit -m "Update package-lock.json [skip ci]" || echo "No changes to commit"
+        git commit -m "Update package-lock.json [skip]" || echo "No changes to commit"
     - run: npm version patch
     - name: Commit changes
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git commit -am "Bump version [skip ci]"
+        git commit -am "Bump version [skip ci]" || echo "No changes to commit"
     - name: Push changes
       run: git push origin main
     - run: npm publish
