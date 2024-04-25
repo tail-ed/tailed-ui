@@ -19,7 +19,7 @@ Certain components now have variants. The variants can be appended in the compon
 Package is no longer private and has been published on NPM instead of just GitHub so installing it is simpler now. The recommended way is by running the command below. Should be compatible with npm and yarn as well.
 
 ```bash
-pnpx @tail-ed/shadcn-custom init
+pnpx @tail-ed/shadcn-tailed init
 ```
 
 <hr/>
@@ -39,7 +39,9 @@ export function cn(...inputs: ClassValue[]) {
 
 # Testing your components with storybook
 
-Storybook and its dependencies should already be installed as a dev dependency after `npm install` is run.
+Storybook is a great tool that allows components to be previewed in an interactive environment. It also allows the creation of unit tests which can be run through the browser client. 
+
+Storybook and its dependencies should already be installed as dev dependencies after `npm install` is run.
 
 ## Using storybook
 Storybook can be run by running
@@ -51,3 +53,154 @@ This should open a browser window and display:
 ![image](https://i.ibb.co/wwq004c/storybook.png)
 
 On the left side is where each story that's been created is displayed and they can be viewed by being clicked.
+
+
+## Writing Stories
+
+### File creation
+Writing stories is a little different from implementing a component as its set up differently. In the `src/stories` create a new file and name it similarly to this: `Component.stories.ts`. 
+
+### Story format
+
+A few things are required to start writing the story. Import `Meta` and `StoryObj` from `@storybook/react` as well as the component of your choice:
+
+``` tsx
+import type { Meta, StoryObj } from '@storybook/react';
+import {Textarea} from '../components/ui/textarea'
+
+```
+
+#### Metadata
+
+A meta tag needs to be created for the component's metadata. That is done by following this structure
+
+```ts
+const meta : Meta<typeof Textarea> = { 
+    title: 'components/ui/Textarea',
+    component: Textarea,
+    parameters: {
+      layout: 'centered',
+    },
+    tags: ['autodocs'],
+
+
+
+
+} satisfies Meta<typeof Textarea>;
+```
+
+A constant of type of Textarea is declared. This constant is given a `title` to identify it. The `component` property should be set as the component itself. 
+
+The `parameters` are where parameters can be set, in the Textarea example you can see that `layout` is set to `centered`.
+
+`Tags` are what you want the story to be tagged as,
+
+Export the `meta` tag as default and create a new type called `Story` of type meta.
+
+```ts
+export default meta;
+type Story = StoryObj<typeof meta>;
+```
+
+#### Story creation
+Creating the stories is straightforward from here,
+export `Story` constants that represent each story and these story constants can have args.
+
+```ts
+export const Primary: Story = {
+    args: {
+        "variant": "default",
+    }
+}
+```
+In this example the `"variant"` property of `Textarea` is set to `"default"`. The variant property changes the style of the Textarea based on already created variants and this is how they are able to be set within a story.
+
+### Complex Components Containing Sub-components
+
+Creating a story for a component made up of multiple smaller components requires a bit more work. Inside the `stories` folder there is a file named `Alertdialog.tsx` which uses all the smaller components to create an alert dialog.
+
+```tsx
+import React from 'react'
+import {  AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,} from '../components/ui/alert-dialog'
+
+import { Button } from '../components/ui/button'
+
+export function AlertDialogDemo() {
+    return (
+      <AlertDialog>
+        <AlertDialogTrigger asChild>
+          <Button variant="outline">Show Dialog</Button>
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This action cannot be undone. This will permanently delete your
+              account and remove your data from our servers.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction>Continue</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    )
+  }
+  ```
+
+An AlertDialog needs all these other components in order to function properly so it needs to be assembled in a separate file in order to write a story for it. 
+
+#### AlertDialog Story Example
+
+The implementation of the story is similar to the previous example:
+
+```ts
+import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
+import {Textarea} from '../components/ui/textarea'
+
+
+const meta : Meta<typeof Textarea> = { 
+    title: 'Example/Textarea',
+    component: Textarea,
+    parameters: {
+      layout: 'centered',
+    },
+    tags: ['autodocs'],
+
+
+
+
+} satisfies Meta<typeof Textarea>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Primary: Story = {
+    args: {
+        "variant": "default",
+    }
+}
+
+export const Secondary: Story = {
+    args: {
+        "variant": "classic",
+    }
+}
+```
+This will display it as it was intended when Storybook is run.
+
+## Storybook Testing
+
+Storybook comes with functionality to run tests to test the components to ensure it is working correctly. Currently no tests have been implemented as the testing was done manually for each component before the components were put in their own library. Testing simple components is straight forward but it might require a bit more work for the complex components like the AlertDialog.
+
+The plan is the eventually write tests for each components and when they are created this README file will be updated to explain how to write your own tests.
