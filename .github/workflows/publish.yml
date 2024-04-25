@@ -14,6 +14,12 @@ jobs:
         node-version: '14'
         registry-url: 'https://registry.npmjs.org'
     - run: npm install
+    - name: Commit package-lock.json changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add package-lock.json
+        git commit -m "Update package-lock.json [skip ci]" || echo "No changes to commit"
     - run: npm version patch
     - name: Commit changes
       run: |
