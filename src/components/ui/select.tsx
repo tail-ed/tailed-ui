@@ -1,24 +1,25 @@
-"use client"
+"use client";
 
 import * as React from "react";
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { Check, ChevronDown, ChevronUp } from "lucide-react";
-import {cva, type VariantProps} from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 
-import { cn } from "../../lib/utils"
+import { cn } from "../../lib/utils";
 
-const Select = SelectPrimitive.Root
+const Select = SelectPrimitive.Root;
 
-const SelectGroup = SelectPrimitive.Group
+const SelectGroup = SelectPrimitive.Group;
 
-const SelectValue = SelectPrimitive.Value
+const SelectValue = SelectPrimitive.Value;
 
 const selectTriggerVariants = cva(
   "flex h-10 w-full items-center justify-between rounded-md border border-slate-200 bg-white px-3 py-2 text-sm ring-offset-blue-500 placeholder:text-slate-500 focus:outline-none focus:ring-1  focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 dark:bg-input_grey dark:ring-offset-slate-950 dark:placeholder:text-slate-400 dark:focus:ring-slate-300",
   {
     variants: {
       variant: {
-        default: "dark:bg-input_grey  dark:placeholder:text-slate-400  dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:border-gray-500 focus:ring-blue-500 ring-offset-blue-500 dark:ring-offset-blue-500 dark:focus-visible:ring-blue-500 dark:focus-visible:ring-offset-blue-500 dark:focus-visible:border",
+        default:
+          "dark:bg-input_grey dark:placeholder:text-slate-400  dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 focus:ring-blue-500 ring-offset-blue-500 dark:ring-offset-blue-500 dark:focus-visible:ring-blue-500 dark:focus-visible:ring-offset-blue-500 dark:focus-visible:border border-input_grey-border",
         classic: "dark:border-slate-800 dark:bg-slate-950 dark:text-slate-50",
       },
     },
@@ -28,11 +29,12 @@ const selectTriggerVariants = cva(
   }
 );
 const selectContentVariants = cva(
-  "relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border border-slate-200 bg-white text-slate-950 shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 ",
+  "relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border bg-white text-slate-950 shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 ",
   {
     variants: {
       variant: {
-        default: "dark:bg-input_grey  dark:placeholder:text-slate-400  dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:border-gray-500",
+        default:
+          "dark:bg-input_grey dark:placeholder:text-slate-400  dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 border-input_grey-border",
         classic: "dark:border-slate-800 dark:bg-slate-950 dark:text-slate-50",
       },
     },
@@ -44,23 +46,20 @@ const selectContentVariants = cva(
 
 //Interfaces to allow custom types
 interface SelectTriggerProps
-extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>,
-VariantProps<typeof selectTriggerVariants> {}
+  extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>,
+    VariantProps<typeof selectTriggerVariants> {}
 
 interface SelectContentProps
-extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content>,
-VariantProps<typeof selectContentVariants> {}
+  extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content>,
+    VariantProps<typeof selectContentVariants> {}
 
 const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
   SelectTriggerProps
->(({ className,variant, children, ...props }, ref) => (
+>(({ className, variant, children, ...props }, ref) => (
   <SelectPrimitive.Trigger
     ref={ref}
-    className={cn(
-      selectTriggerVariants({ variant, className }),
-      
-    )}
+    className={cn(selectTriggerVariants({ variant, className }))}
     {...props}
   >
     {children}
@@ -68,8 +67,8 @@ const SelectTrigger = React.forwardRef<
       <ChevronDown className="h-4 w-4 opacity-50" />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
-))
-SelectTrigger.displayName = SelectPrimitive.Trigger.displayName
+));
+SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
 
 const SelectScrollUpButton = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.ScrollUpButton>,
@@ -85,8 +84,8 @@ const SelectScrollUpButton = React.forwardRef<
   >
     <ChevronUp className="h-4 w-4" />
   </SelectPrimitive.ScrollUpButton>
-))
-SelectScrollUpButton.displayName = SelectPrimitive.ScrollUpButton.displayName
+));
+SelectScrollUpButton.displayName = SelectPrimitive.ScrollUpButton.displayName;
 
 const SelectScrollDownButton = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.ScrollDownButton>,
@@ -102,9 +101,9 @@ const SelectScrollDownButton = React.forwardRef<
   >
     <ChevronDown className="h-4 w-4" />
   </SelectPrimitive.ScrollDownButton>
-))
+));
 SelectScrollDownButton.displayName =
-  SelectPrimitive.ScrollDownButton.displayName
+  SelectPrimitive.ScrollDownButton.displayName;
 
 const SelectContent = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Content>,
@@ -113,10 +112,10 @@ const SelectContent = React.forwardRef<
   <SelectPrimitive.Portal>
     <SelectPrimitive.Content
       ref={ref}
-      className={cn(selectContentVariants({ variant, className }),
+      className={cn(
+        selectContentVariants({ variant, className }),
         position === "popper" &&
-          "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
-        
+          "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1"
       )}
       position={position}
       {...props}
@@ -134,8 +133,8 @@ const SelectContent = React.forwardRef<
       <SelectScrollDownButton />
     </SelectPrimitive.Content>
   </SelectPrimitive.Portal>
-))
-SelectContent.displayName = SelectPrimitive.Content.displayName
+));
+SelectContent.displayName = SelectPrimitive.Content.displayName;
 
 const SelectLabel = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Label>,
@@ -146,8 +145,8 @@ const SelectLabel = React.forwardRef<
     className={cn("py-1.5 pl-8 pr-2 text-sm font-semibold", className)}
     {...props}
   />
-))
-SelectLabel.displayName = SelectPrimitive.Label.displayName
+));
+SelectLabel.displayName = SelectPrimitive.Label.displayName;
 
 const SelectItem = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Item>,
@@ -169,8 +168,8 @@ const SelectItem = React.forwardRef<
 
     <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
   </SelectPrimitive.Item>
-))
-SelectItem.displayName = SelectPrimitive.Item.displayName
+));
+SelectItem.displayName = SelectPrimitive.Item.displayName;
 
 const SelectSeparator = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Separator>,
@@ -181,8 +180,8 @@ const SelectSeparator = React.forwardRef<
     className={cn("-mx-1 my-1 h-px bg-slate-100 dark:bg-slate-800", className)}
     {...props}
   />
-))
-SelectSeparator.displayName = SelectPrimitive.Separator.displayName
+));
+SelectSeparator.displayName = SelectPrimitive.Separator.displayName;
 
 export {
   Select,
@@ -195,4 +194,4 @@ export {
   SelectSeparator,
   SelectScrollUpButton,
   SelectScrollDownButton,
-}
+};

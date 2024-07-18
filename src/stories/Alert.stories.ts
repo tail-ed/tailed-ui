@@ -1,26 +1,16 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
-import { AlertDialogDemo } from './Alertdialog';
+import type { Meta, StoryObj } from "@storybook/react";
+import { AlertDialog } from "../components/ui/alert-dialog";
 
-
-
-
-const meta : Meta<typeof AlertDialogDemo> = {
-    title: 'Example/AlertDialog',
-    component: AlertDialogDemo,
-    parameters: {
-      layout: 'centered',
-    },
-    tags: ['autodocs'],
-
-} satisfies Meta<typeof AlertDialogDemo>;
+const meta: Meta<typeof AlertDialog> = {
+  title: "Example/AlertDialog",
+  component: AlertDialog,
+  parameters: {
+    layout: "centered",
+  },
+  tags: ["autodocs"],
+} satisfies Meta<typeof AlertDialog>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
-
-}
-
-
-
+export const Primary: Story = {};

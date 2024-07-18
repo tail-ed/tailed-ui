@@ -135,3 +135,5 @@ node_modules
 
 *storybook.log
 scriptTest
+
+storybook-static/

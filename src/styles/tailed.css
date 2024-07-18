@@ -19,6 +19,17 @@
 }
 
 @layer base {
+  * {
+    @apply border-border;
+    @apply ring-offset-blue-500;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer tailed {
   :root {
     --background: theme("colors.gray.50");
     --foreground: 222.2 84% 4.9%;
@@ -27,7 +38,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
     /* ex: Button color */
-    --primary: theme("colors.blue.700");
+    --primary: theme("colors.blue.600");
     --primary-hover: theme("colors.blue.800");
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96.1%;
