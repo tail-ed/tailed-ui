@@ -5,34 +5,10 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* Hide scrollbar for IE, Edge and Firefox */
-  .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-    @apply ring-offset-blue-500;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-  }
-}
-
 @layer tailed {
   :root {
     --background: theme("colors.gray.50");
-    --foreground: 222.2 84% 4.9%;
+    --foreground: theme("colors.gray.900");
     --card: theme("colors.white");
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
@@ -61,7 +37,7 @@
 
   .dark {
     --background: theme("colors.gray.700");
-    --foreground: 210 40% 98%;
+    --foreground: theme("colors.gray.50");
     --card: theme("colors.gray.800");
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
@@ -89,7 +65,31 @@
   }
 }
 
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
 .pac-container {
   z-index: 9999999 !important;
   display: block;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    @apply ring-offset-blue-500;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
 }

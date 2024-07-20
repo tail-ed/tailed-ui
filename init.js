@@ -8,7 +8,12 @@ import { fileURLToPath } from "url";
 import inquirer from "inquirer";
 import chalk from "chalk";
 
-const devDependencies = ["autoprefixer", "typescript"];
+const devDependencies = [
+  "autoprefixer",
+  "typescript",
+  "tailwindcss",
+  "postcss",
+];
 
 //required downloads for the components to work
 const radixui = [
@@ -120,18 +125,14 @@ function installDependencies(packageManager, dependencies, isDev = false) {
 }
 
 async function copy(destFile, fileName, sourceFile, shouldOverwrite) {
-  if (await fs.pathExists(destFile)) {
-    if (!shouldOverwrite) {
-      console.log(`Skipping ${fileName}...`);
-    } else {
-      console.log(chalk.greenBright(`${fileName} Copying...`));
-      await fs.copy(sourceFile, destFile);
-    }
-  } else {
-    // If no duplicate file, copy the file
-    console.log(chalk.greenBright(`${fileName} Copying...`));
-    await fs.copy(sourceFile, destFile);
+  if (!shouldOverwrite && (await fs.pathExists(destFile))) {
+    console.log(`Skipping ${fileName}...`);
+    return;
   }
+
+  console.log(chalk.greenBright(`Copying... ${fileName} `));
+
+  await fs.copy(sourceFile, destFile);
 }
 
 //Command
@@ -146,28 +147,24 @@ const init = new Command()
         type: "list",
         name: "directory",
         message:
-          "Which project structure are you using? (src = new, app = old):",
+          "Which project structure are you using? (src = old, app = new):",
         choices: ["src", "app"],
+        default: "app",
       },
     ];
 
     const directoryAnswer = await inquirer.prompt(directoryQuestion);
     const directory = directoryAnswer.directory === "src" ? "src" : "./";
-    console.log("Directory:", directory);
-    //Copying components
-    console.log("Copying components...");
 
     try {
-      // const sourceDir = path.join(__dirname, 'src');
-      // const destDir = path.join(process.cwd(), directory);
-      // const files = await fs.readdir(sourceDir);
-
+      const rootSourceDir = path.join(__dirname, "src");
       const rootDestDir = path.join(process.cwd(), directory);
 
       const foldersToCopy = ["components", "lib", "styles"];
 
       for (const folder of foldersToCopy) {
-        const sourceDir = path.join(__dirname, folder);
+        const sourceDir = path.join(rootSourceDir, folder);
+
         const destDir = path.join(rootDestDir, folder);
 
         let shouldOverwrite = false;
@@ -181,13 +178,12 @@ const init = new Command()
 
         const files = await fs.readdir(sourceDir);
 
-        console.log(`directory: ${destDir} files: ${files}`);
-
         for (const file of files) {
           const sourceFile = path.join(sourceDir, file);
+
           const destFile = path.join(destDir, file);
 
-          if (file === "global.css" && (await fs.pathExists(destFile))) {
+          if (file === "globals.css" && (await fs.pathExists(destFile))) {
             // make sure the first 3 lines of global.css matches the following
             // @import "quill.css" layer(quill);
             // @import "apexcharts.css" layer(apexcharts);
@@ -205,14 +201,14 @@ const init = new Command()
             ) {
               console.log(
                 chalk.cyan(
-                  `Skipping ${file} as it already exists, follow the instructions in README to configure it properly...`
+                  `Skipping ${file} as it is already configured properly...`
                 )
               );
               continue;
             }
 
             // insert the lines at the beginning of the file
-            console.log(chalk.greenBright(`${file} Copying...`));
+            console.log(chalk.greenBright(`Copying... ${file}`));
 
             lines.unshift(firstLine, secondLine, thirdLine);
 
@@ -225,11 +221,11 @@ const init = new Command()
         }
       }
 
-      // Copy tailwind.config.js, tailwind.flowbite.config.js, tailwind.shadcn.config.js, postcss.config.cjs
+      // Copy tailwind.config.js, tailwind.flowbite.preset.js, tailwind.shadcn.preset.js, postcss.config.cjs
 
       const fileNames = [
-        "tailwind.flowbite.config.js",
-        "tailwind.shadcn.config.js",
+        "tailwind.flowbite.preset.js",
+        "tailwind.shadcn.preset.js",
         "tailwind.config.js",
         "postcss.config.js",
       ];
@@ -243,7 +239,7 @@ const init = new Command()
 
         if (await fs.pathExists(destFile)) {
           const answer = await inquirer.prompt(
-            getShouldOverwriteQuestion(destFile)
+            getShouldOverwriteQuestion(fileName)
           );
           shouldOverwrite = answer.shouldOverwrite;
         }
@@ -257,55 +253,79 @@ const init = new Command()
 
           const lines = tailwindConfig.split("\n");
 
-          const firstLine =
-            'const flowbite = require("./tailwind.flowbite.config.js");';
-          const secondLine =
-            'const shadcn = require("./tailwind.shadcn.config.js");';
-          const thirdLine = "...flowbite,";
-          const fourthLine = "...shadcn,";
+          //
+          const shadcnLine = "require('./tailwind.shadcn.preset.js'),";
 
-          if (
-            lines[0] === firstLine &&
-            lines[1] === secondLine &&
-            lines[2] === thirdLine &&
-            lines[3] === fourthLine
-          ) {
+          const flowbiteLine = "require('./tailwind.flowbite.preset.js'),";
+
+          const presetShadcnExists = lines.some((line) =>
+            line.includes(shadcnLine)
+          );
+
+          const presetFlowbiteExists = lines.some((line) =>
+            line.includes(flowbiteLine)
+          );
+
+          if (presetShadcnExists && presetFlowbiteExists) {
             console.log(
               chalk.cyan(
-                `Skipping ${fileName} as it already exists, follow the instructions in README to configure it properly...`
+                `Skipping ${fileName} as it is already configured properly...`
               )
             );
             continue;
           }
 
-          // insert the lines
-          // third and fourth should be the first entry after module export, as follow:
-          // module.exports = {
-          //     ...flowbite,
-          //     ...shadcn
-          // };
-
-          const moduleExportLine = "module.exports = {";
+          const presetsLine = "presets: [";
 
           // find the index of the module export line
-          const moduleExportIndex = lines.findIndex((line) =>
-            line.includes(moduleExportLine)
+          let presetsPosition = lines.findIndex((line) =>
+            line.includes(presetsLine)
           );
-          if (moduleExportIndex === -1) {
-            console.error(`Failed to find ${moduleExportLine} in ${fileName}`);
-            continue;
+
+          if (presetsPosition !== -1) {
+            // insert the lines at the beginning of the file
+            console.log(chalk.greenBright(`Copying... ${fileName}`));
+
+            lines.splice(presetsPosition + 1, 0, shadcnLine, flowbiteLine);
+
+            const newTailwindConfig = lines.join("\n");
+
+            await fs.writeFile(destFile, newTailwindConfig);
+          } else {
+            console.log(
+              `Presets not found in ${fileName}, adding presets in module.exports ...`
+            );
+
+            const modulesExportLine = "module.exports = {";
+
+            const moduleExportIndex = lines.findIndex((line) =>
+              line.includes(modulesExportLine)
+            );
+
+            if (moduleExportIndex === -1) {
+              console.log(`Module export not found in ${fileName}`);
+              continue;
+            }
+
+            // insert the lines at the beginning of the file
+            console.log(chalk.greenBright(`Copying... ${fileName}`));
+
+            const presetsBefore = "presets: [";
+            const presetsAfter = "],";
+
+            lines.splice(
+              moduleExportIndex + 1,
+              0,
+              presetsBefore,
+              shadcnLine,
+              flowbiteLine,
+              presetsAfter
+            );
+
+            const newTailwindConfig = lines.join("\n");
+
+            await fs.writeFile(destFile, newTailwindConfig);
           }
-
-          // insert the lines at the beginning of the file
-          console.log(chalk.greenBright(`${fileName} Copying...`));
-
-          lines.unshift(firstLine, secondLine);
-
-          lines.splice(moduleExportIndex + 1, 0, thirdLine, fourthLine);
-
-          const newTailwindConfig = lines.join("\n");
-
-          await fs.writeFile(destFile, newTailwindConfig);
         } else {
           await copy(destFile, fileName, sourceFile, shouldOverwrite);
         }
@@ -322,7 +342,8 @@ const init = new Command()
 
       const dependencies = Object.keys(packageData.dependencies).filter(
         (dep) =>
-          !["fs-extra", "inquirer", "chalk"].includes(dep) && dep.trim() !== ""
+          !["fs-extra", "inquirer", "chalk", "vite"].includes(dep) &&
+          dep.trim() !== ""
       );
 
       console.log("dependencies:", dependencies);
@@ -357,7 +378,8 @@ const init = new Command()
       console.log("Restart typescript server if you see errors!");
       console.log(chalk.greenBright("tailed-ui installed🎉🎉🎉!"));
     } catch (error) {
-      console.error("Failed to copy components:", error);
+      // print full stack trace
+      console.error("Failed to copy components:", JSON.stringify(error));
       process.exit(1);
     }
   });

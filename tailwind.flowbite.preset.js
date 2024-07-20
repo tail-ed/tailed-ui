@@ -1,4 +1,4 @@
-export const flowbite = {
+module.exports = {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
@@ -51,8 +51,8 @@ export const flowbite = {
     transparent: "transparent",
     current: "currentColor",
     extend: {
-      color: {
-        coolGray: {
+      colors: {
+        gray: {
           50: "hsl(210, 20%, 98%)",
           100: "hsl(220, 14%, 96%)",
           200: "hsl(220, 13%, 91%)",
@@ -88,7 +88,7 @@ export const flowbite = {
           800: "hsl(25, 71%, 26%)",
           900: "hsl(23, 69%, 23%)",
         },
-        emerald: {
+        green: {
           50: "hsl(154, 41%, 97%)",
           100: "hsl(152, 58%, 91%)",
           200: "hsl(146, 74%, 81%)",

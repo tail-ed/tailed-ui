@@ -1,10 +1,3 @@
-@import "quill.css" layer(quill);
-@import "apexcharts.css" layer(apexcharts);
-@import "tailed.css" layer(tailed);
-
-@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "quill.css";
+@import "apexcharts.css";
+@import "tailed.css";

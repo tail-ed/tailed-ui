@@ -1,5 +1,5 @@
 {
-  "name": "@tail-ed/shadcn-tailed",
+  "name": "@tail-ed/tailed-ui",
   "version": "0.0.7",
   "bin": {
     "init": "init.js"
@@ -8,8 +8,8 @@
   "main": "dist/cjs/index.js",
   "files": [
     "src",
-    "tailwind.flowbite.config.js",
-    "tailwind.shadcn.config.js",
+    "tailwind.flowbite.preset.js",
+    "tailwind.shadcn.preset.js",
     "tailwind.config.js",
     "postcss.config.js"
   ],
@@ -29,7 +29,8 @@
     "tailwindcss",
     "react",
     "components",
-    "tailed"
+    "tailed",
+    "tail-ed"
   ],
   "author": "Tail'ed",
   "license": "ISC",
@@ -55,14 +56,17 @@
     "autoprefixer": "^10.4.18",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.7",
+    "postcss": ">=8.4.31",
     "react": "^18.2.0",
     "rollup": "^4.13.0",
     "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "storybook": "^8.0.9",
+    "tailwindcss": "^3.4.1",
     "tslib": "^2.6.2",
     "typescript": "^5.4.2"
   },
+  "//": "exclude [chalk, fs-extra, vite, inquirer] from the init script.",
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
     "@radix-ui/react-icons": "^1.3.0",
@@ -74,12 +78,11 @@
     "fs-extra": "^11.2.0",
     "inquirer": "^9.2.16",
     "lucide-react": "^0.356.0",
-    "postcss": ">=8.4.31",
     "radix-ui": "^1.0.1",
     "react-hook-form": "^7.51.0",
     "tailwind-merge": "^2.2.1",
-    "tailwindcss": "^3.4.1",
     "tailwindcss-animate": "^1.0.7",
+    "vite": "^5.3.4",
     "zod": "^3.22.4"
   },
   "peerDependencies": {
