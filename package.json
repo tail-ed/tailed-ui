@@ -89,5 +89,13 @@
     "next": "^14.0.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tail-ed/tailed-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tail-ed/tailed-ui/issues"
+  },
+  "homepage": "https://github.com/tail-ed/tailed-ui#readme"
 }
