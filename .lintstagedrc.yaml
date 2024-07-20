@@ -1,0 +1,2 @@
+"*.{js,ts,tsx,json}":
+  - prettier --write --no-error-on-unmatched-pattern

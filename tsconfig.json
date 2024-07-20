@@ -16,7 +16,7 @@
     "allowSyntheticDefaultImports": true,
     "emitDeclarationOnly": true,
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./src/*"]
     }
   }
 }
