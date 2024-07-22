@@ -78,11 +78,6 @@
   }
 }
 
-.pac-container {
-  z-index: 9999999 !important;
-  display: block;
-}
-
 @layer base {
   * {
     @apply border-border;

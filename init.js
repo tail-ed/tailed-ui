@@ -190,9 +190,9 @@ const init = new Command()
             // @import "tailed.css" layer(tailed);
             const globalCss = await fs.readFile(destFile, "utf8");
             const lines = globalCss.split("\n");
-            const firstLine = '@import "quill.css" layer(quill);';
-            const secondLine = '@import "apexcharts.css" layer(apexcharts);';
-            const thirdLine = '@import "tailed.css" layer(tailed);';
+            const firstLine = '@import "quill.css";';
+            const secondLine = '@import "apexcharts.css";';
+            const thirdLine = '@import "tailed.css";';
 
             if (
               lines[0] === firstLine &&
