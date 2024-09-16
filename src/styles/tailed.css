@@ -31,7 +31,7 @@
     --radius: 0.5rem;
 
     /* Custom colors */
-    --modal: 217, 19.1%, 26.7%;
+    --modal: theme("colors.white");
     --modal-border: 215, 13.79%, 34.12%;
   }
 
@@ -58,7 +58,7 @@
     --input: 240 3.7% 15.9%;
     --ring: theme("colors.blue.500");
     /* Custom colors */
-    --modal: 217, 19.1%, 26.7%;
+    --modal: theme("colors.gray.700");
     --modal-border: 201, 14%, 49%;
     --input-grey: theme("colors.gray.700");
     --input-grey-border: theme("colors.gray.600");
