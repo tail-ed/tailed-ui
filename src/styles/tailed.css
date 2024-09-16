@@ -16,7 +16,7 @@
     /* ex: Button color */
     --primary: theme("colors.blue.600");
     --primary-hover: theme("colors.blue.800");
-    --primary-foreground: 210 40% 98%;
+    --primary-foreground: theme("colors.white");
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96.1%;
@@ -26,7 +26,7 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --border: theme("colors.gray.200");
-    --input: 214.3 31.8% 91.4%;
+    --input: theme("colors.gray.200");
     --ring: theme("colors.blue.300");
     --radius: 0.5rem;
 
@@ -55,7 +55,7 @@
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
     --border: theme("colors.gray.700");
-    --input: 240 3.7% 15.9%;
+    --input: theme("colors.gray.700");
     --ring: theme("colors.blue.500");
     /* Custom colors */
     --modal: 217, 19.1%, 26.7%;

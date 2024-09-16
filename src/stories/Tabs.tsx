@@ -12,13 +12,34 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import React from "react";
 
-export function TabsDemo() {
+export function TabsDemo(args: any) {
   return (
-    <Tabs defaultValue="account" className="w-[400px]">
-      <TabsList className="grid w-full grid-cols-2">
-        <TabsTrigger value="account">Account</TabsTrigger>
-        <TabsTrigger value="password">Password</TabsTrigger>
+    <Tabs defaultValue="account" {...args.tabs}>
+      <TabsList {...args.tabslist}>
+        <TabsTrigger {...args.tabstrigger} value="account">
+          Account
+        </TabsTrigger>
+        <TabsTrigger {...args.tabstrigger} value="password1">
+          Password
+        </TabsTrigger>
+        <TabsTrigger {...args.tabstrigger} value="password2">
+          Password
+        </TabsTrigger>
+        <TabsTrigger {...args.tabstrigger} value="password3">
+          Password
+        </TabsTrigger>
+        <TabsTrigger {...args.tabstrigger} value="password4">
+          Password
+        </TabsTrigger>
       </TabsList>
+      <DefaultTabsContent />
+    </Tabs>
+  );
+}
+
+export default function DefaultTabsContent() {
+  return (
+    <>
       <TabsContent value="account">
         <Card>
           <CardHeader>
@@ -42,7 +63,7 @@ export function TabsDemo() {
           </CardFooter>
         </Card>
       </TabsContent>
-      <TabsContent value="password">
+      <TabsContent value="password1">
         <Card>
           <CardHeader>
             <CardTitle>Password</CardTitle>
@@ -65,6 +86,75 @@ export function TabsDemo() {
           </CardFooter>
         </Card>
       </TabsContent>
-    </Tabs>
+      <TabsContent value="password2">
+        <Card>
+          <CardHeader>
+            <CardTitle>Password</CardTitle>
+            <CardDescription>
+              Change your password here. After saving, you'll be logged out.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            <div className="space-y-1">
+              <Label htmlFor="current">Current password</Label>
+              <Input id="current" type="password" />
+            </div>
+            <div className="space-y-1">
+              <Label htmlFor="new">New password</Label>
+              <Input id="new" type="password" />
+            </div>
+          </CardContent>
+          <CardFooter>
+            <Button>Save password</Button>
+          </CardFooter>
+        </Card>
+      </TabsContent>
+      <TabsContent value="password3">
+        <Card>
+          <CardHeader>
+            <CardTitle>Password</CardTitle>
+            <CardDescription>
+              Change your password here. After saving, you'll be logged out.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            <div className="space-y-1">
+              <Label htmlFor="current">Current password</Label>
+              <Input id="current" type="password" />
+            </div>
+            <div className="space-y-1">
+              <Label htmlFor="new">New password</Label>
+              <Input id="new" type="password" />
+            </div>
+          </CardContent>
+          <CardFooter>
+            <Button>Save password</Button>
+          </CardFooter>
+        </Card>
+      </TabsContent>
+      <TabsContent value="password4">
+        <Card>
+          <CardHeader>
+            <CardTitle>Password</CardTitle>
+            <CardDescription>
+              Change your password here. After saving, you'll be logged out.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            <div className="space-y-1">
+              <Label htmlFor="current">Current password</Label>
+              <Input id="current" type="password" />
+            </div>
+            <div className="space-y-1">
+              <Label htmlFor="new">New password</Label>
+              <Input id="new" type="password" />
+            </div>
+          </CardContent>
+          <CardFooter>
+            <Button>Save password</Button>
+          </CardFooter>
+        </Card>
+      </TabsContent>
+    </>
   );
 }
