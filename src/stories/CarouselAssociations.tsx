@@ -8,8 +8,11 @@ import {
 import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
 import Autoplay from "embla-carousel-autoplay";
-import "../styles/embla.css";
 import { Clock10 } from "lucide-react";
+
+type EmblaOptionsType = {
+  loop?: boolean;
+};
 
 type PropType = {
   slides: number[];
@@ -50,8 +53,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     </div>
   );
 };
-//Used to pass in a class name relative to the story arguments.
-//Ex: the 'Primary' style has nothing in argsClassName, but the 'ThreeItems' style has 'basis-1/3' to fit 3 carousel items.
+
 interface CarouselAssociationsProps {
   argsClassName: string;
   carouselStyle: string;
