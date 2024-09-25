@@ -40,11 +40,10 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                 className="rounded-lg aspect-square max-w-md"
               />
               <span className="text-center font-semibold text-3xl mt-4">
-                Test
+                Tail'ed
               </span>
               <span className="text-center text-xl">
-                lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua
+                Association Tail'ed : réseau de jeunes talents en tech
               </span>
             </div>
           ))}
@@ -101,12 +100,10 @@ export function CarouselAssociations({
                     className="rounded-lg aspect-square max-w-md"
                   />
                   <span className="text-center font-semibold text-3xl mt-4">
-                    Test
+                    Tail'ed
                   </span>
                   <span className="text-center text-xl">
-                    lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua
+                    Association Tail'ed : réseau de jeunes talents en tech
                   </span>
                 </div>
               </CarouselItem>

@@ -1,0 +1,927 @@
+[1mdiff --git a/components.json b/components.json[m
+[1mnew file mode 100644[m
+[1mindex 0000000..2c145d5[m
+[1m--- /dev/null[m
+[1m+++ b/components.json[m
+[36m@@ -0,0 +1,20 @@[m
+[32m+[m[32m{[m
+[32m+[m[32m  "$schema": "https://ui.shadcn.com/schema.json",[m
+[32m+[m[32m  "style": "default",[m
+[32m+[m[32m  "rsc": false,[m
+[32m+[m[32m  "tsx": true,[m
+[32m+[m[32m  "tailwind": {[m
+[32m+[m[32m    "config": "tailwind.config.js",[m
+[32m+[m[32m    "css": "src/styles/tailed.css",[m
+[32m+[m[32m    "baseColor": "neutral",[m
+[32m+[m[32m    "cssVariables": true,[m
+[32m+[m[32m    "prefix": ""[m
+[32m+[m[32m  },[m
+[32m+[m[32m  "aliases": {[m
+[32m+[m[32m    "components": "@/components",[m
+[32m+[m[32m    "utils": "@/lib/utils",[m
+[32m+[m[32m    "ui": "@/components/ui",[m
+[32m+[m[32m    "lib": "@/lib",[m
+[32m+[m[32m    "hooks": "@/hooks"[m
+[32m+[m[32m  }[m
+[32m+[m[32m}[m
+[1mdiff --git a/package-lock.json b/package-lock.json[m
+[1mindex b91b832..3b6e473 100644[m
+[1m--- a/package-lock.json[m
+[1m+++ b/package-lock.json[m
+[36m@@ -11,17 +11,19 @@[m
+       "dependencies": {[m
+         "@hookform/resolvers": "^3.3.4",[m
+         "@radix-ui/react-icons": "^1.3.0",[m
+[32m+[m[32m        "@radix-ui/react-slot": "^1.1.0",[m
+         "chalk": "^5.3.0",[m
+         "class-variance-authority": "^0.7.0",[m
+[31m-        "clsx": "^2.1.0",[m
+[32m+[m[32m        "clsx": "^2.1.1",[m
+         "cmdk": "^1.0.0",[m
+[32m+[m[32m        "embla-carousel-react": "^8.3.0",[m
+         "flowbite": "^2.3.0",[m
+         "fs-extra": "^11.2.0",[m
+         "inquirer": "^9.2.16",[m
+         "lucide-react": "^0.356.0",[m
+         "radix-ui": "^1.0.1",[m
+         "react-hook-form": "^7.51.0",[m
+[31m-        "tailwind-merge": "^2.2.1",[m
+[32m+[m[32m        "tailwind-merge": "^2.5.2",[m
+         "tailwindcss-animate": "^1.0.7",[m
+         "vite": "^5.3.4",[m
+         "zod": "^3.22.4"[m
+[36m@@ -3194,6 +3196,25 @@[m
+         }[m
+       }[m
+     },[m
+[32m+[m[32m    "node_modules/@radix-ui/react-alert-dialog/node_modules/@radix-ui/react-slot": {[m
+[32m+[m[32m      "version": "1.0.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@radix-ui/react-slot/-/react-slot-1.0.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-YeTpuq4deV+6DusvVUW4ivBgnkHwECUu0BiN43L5UCDFgdhsRUWAghhTF5MbvNTPzmiFOx90asDSUjWuCNapwg==",[m
+[32m+[m[32m      "license": "MIT",[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "@babel/runtime": "^7.13.10",[m
+[32m+[m[32m        "@radix-ui/react-compose-refs": "1.0.1"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependencies": {[m
+[32m+[m[32m        "@types/react": "*",[m
+[32m+[m[32m        "react": "^16.8 || ^17.0 || ^18.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependenciesMeta": {[m
+[32m+[m[32m        "@types/react": {[m
+[32m+[m[32m          "optional": true[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+     "node_modules/@radix-ui/react-arrow": {[m
+       "version": "1.0.3",[m
+       "resolved": "https://registry.npmjs.org/@radix-ui/react-arrow/-/react-arrow-1.0.3.tgz",[m
+[36m@@ -3352,6 +3373,25 @@[m
+         }[m
+       }[m
+     },[m
+[32m+[m[32m    "node_modules/@radix-ui/react-collection/node_modules/@radix-ui/react-slot": {[m
+[32m+[m[32m      "version": "1.0.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@radix-ui/react-slot/-/react-slot-1.0.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-YeTpuq4deV+6DusvVUW4ivBgnkHwECUu0BiN43L5UCDFgdhsRUWAghhTF5MbvNTPzmiFOx90asDSUjWuCNapwg==",[m
+[32m+[m[32m      "license": "MIT",[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "@babel/runtime": "^7.13.10",[m
+[32m+[m[32m        "@radix-ui/react-compose-refs": "1.0.1"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependencies": {[m
+[32m+[m[32m        "@types/react": "*",[m
+[32m+[m[32m        "react": "^16.8 || ^17.0 || ^18.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependenciesMeta": {[m
+[32m+[m[32m        "@types/react": {[m
+[32m+[m[32m          "optional": true[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+     "node_modules/@radix-ui/react-compose-refs": {[m
+       "version": "1.0.1",[m
+       "resolved": "https://registry.npmjs.org/@radix-ui/react-compose-refs/-/react-compose-refs-1.0.1.tgz",[m
+[36m@@ -3450,6 +3490,25 @@[m
+         }[m
+       }[m
+     },[m
+[32m+[m[32m    "node_modules/@radix-ui/react-dialog/node_modules/@radix-ui/react-slot": {[m
+[32m+[m[32m      "version": "1.0.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@radix-ui/react-slot/-/react-slot-1.0.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-YeTpuq4deV+6DusvVUW4ivBgnkHwECUu0BiN43L5UCDFgdhsRUWAghhTF5MbvNTPzmiFOx90asDSUjWuCNapwg==",[m
+[32m+[m[32m      "license": "MIT",[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "@babel/runtime": "^7.13.10",[m
+[32m+[m[32m        "@radix-ui/react-compose-refs": "1.0.1"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependencies": {[m
+[32m+[m[32m        "@types/react": "*",[m
+[32m+[m[32m        "react": "^16.8 || ^17.0 || ^18.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependenciesMeta": {[m
+[32m+[m[32m        "@types/react": {[m
+[32m+[m[32m          "optional": true[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+     "node_modules/@radix-ui/react-direction": {[m
+       "version": "1.0.1",[m
+       "resolved": "https://registry.npmjs.org/@radix-ui/react-direction/-/react-direction-1.0.1.tgz",[m
+[36m@@ -3685,6 +3744,25 @@[m
+         }[m
+       }[m
+     },[m
+[32m+[m[32m    "node_modules/@radix-ui/react-menu/node_modules/@radix-ui/react-slot": {[m
+[32m+[m[32m      "version": "1.0.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@radix-ui/react-slot/-/react-slot-1.0.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-YeTpuq4deV+6DusvVUW4ivBgnkHwECUu0BiN43L5UCDFgdhsRUWAghhTF5MbvNTPzmiFOx90asDSUjWuCNapwg==",[m
+[32m+[m[32m      "license": "MIT",[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "@babel/runtime": "^7.13.10",[m
+[32m+[m[32m        "@radix-ui/react-compose-refs": "1.0.1"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependencies": {[m
+[32m+[m[32m        "@types/react": "*",[m
+[32m+[m[32m        "react": "^16.8 || ^17.0 || ^18.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependenciesMeta": {[m
+[32m+[m[32m        "@types/react": {[m
+[32m+[m[32m          "optional": true[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+     "node_modules/@radix-ui/react-navigation-menu": {[m
+       "version": "1.1.4",[m
+       "resolved": "https://registry.npmjs.org/@radix-ui/react-navigation-menu/-/react-navigation-menu-1.1.4.tgz",[m
+[36m@@ -3758,6 +3836,25 @@[m
+         }[m
+       }[m
+     },[m
+[32m+[m[32m    "node_modules/@radix-ui/react-popover/node_modules/@radix-ui/react-slot": {[m
+[32m+[m[32m      "version": "1.0.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@radix-ui/react-slot/-/react-slot-1.0.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-YeTpuq4deV+6DusvVUW4ivBgnkHwECUu0BiN43L5UCDFgdhsRUWAghhTF5MbvNTPzmiFOx90asDSUjWuCNapwg==",[m
+[32m+[m[32m      "license": "MIT",[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "@babel/runtime": "^7.13.10",[m
+[32m+[m[32m        "@radix-ui/react-compose-refs": "1.0.1"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependencies": {[m
+[32m+[m[32m        "@types/react": "*",[m
+[32m+[m[32m        "react": "^16.8 || ^17.0 || ^18.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependenciesMeta": {[m
+[32m+[m[32m        "@types/react": {[m
+[32m+[m[32m          "optional": true[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+     "node_modules/@radix-ui/react-popper": {[m
+       "version": "1.1.3",[m
+       "resolved": "https://registry.npmjs.org/@radix-ui/react-popper/-/react-popper-1.1.3.tgz",[m
+[36m@@ -3860,6 +3957,25 @@[m
+         }[m
+       }[m
+     },[m
+[32m+[m[32m    "node_modules/@radix-ui/react-primitive/node_modules/@radix-ui/react-slot": {[m
+[32m+[m[32m      "version": "1.0.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@radix-ui/react-slot/-/react-slot-1.0.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-YeTpuq4deV+6DusvVUW4ivBgnkHwECUu0BiN43L5UCDFgdhsRUWAghhTF5MbvNTPzmiFOx90asDSUjWuCNapwg==",[m
+[32m+[m[32m      "license": "MIT",[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "@babel/runtime": "^7.13.10",[m
+[32m+[m[32m        "@radix-ui/react-compose-refs": "1.0.1"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependencies": {[m
+[32m+[m[32m        "@types/react": "*",[m
+[32m+[m[32m        "react": "^16.8 || ^17.0 || ^18.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependenciesMeta": {[m
+[32m+[m[32m        "@types/react": {[m
+[32m+[m[32m          "optional": true[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+     "node_modules/@radix-ui/react-progress": {[m
+       "version": "1.0.3",[m
+       "resolved": "https://registry.npmjs.org/@radix-ui/react-progress/-/react-progress-1.0.3.tgz",[m
+[36m@@ -4021,6 +4137,25 @@[m
+         }[m
+       }[m
+     },[m
+[32m+[m[32m    "node_modules/@radix-ui/react-select/node_modules/@radix-ui/react-slot": {[m
+[32m+[m[32m      "version": "1.0.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@radix-ui/react-slot/-/react-slot-1.0.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-YeTpuq4deV+6DusvVUW4ivBgnkHwECUu0BiN43L5UCDFgdhsRUWAghhTF5MbvNTPzmiFOx90asDSUjWuCNapwg==",[m
+[32m+[m[32m      "license": "MIT",[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "@babel/runtime": "^7.13.10",[m
+[32m+[m[32m        "@radix-ui/react-compose-refs": "1.0.1"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependencies": {[m
+[32m+[m[32m        "@types/react": "*",[m
+[32m+[m[32m        "react": "^16.8 || ^17.0 || ^18.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependenciesMeta": {[m
+[32m+[m[32m        "@types/react": {[m
+[32m+[m[32m          "optional": true[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+     "node_modules/@radix-ui/react-separator": {[m
+       "version": "1.0.3",[m
+       "resolved": "https://registry.npmjs.org/@radix-ui/react-separator/-/react-separator-1.0.3.tgz",[m
+[36m@@ -4078,16 +4213,31 @@[m
+       }[m
+     },[m
+     "node_modules/@radix-ui/react-slot": {[m
+[31m-      "version": "1.0.2",[m
+[31m-      "resolved": "https://registry.npmjs.org/@radix-ui/react-slot/-/react-slot-1.0.2.tgz",[m
+[31m-      "integrity": "sha512-YeTpuq4deV+6DusvVUW4ivBgnkHwECUu0BiN43L5UCDFgdhsRUWAghhTF5MbvNTPzmiFOx90asDSUjWuCNapwg==",[m
+[32m+[m[32m      "version": "1.1.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@radix-ui/react-slot/-/react-slot-1.1.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-FUCf5XMfmW4dtYl69pdS4DbxKy8nj4M7SafBgPllysxmdachynNflAdp/gCsnYWNDnge6tI9onzMp5ARYc1KNw==",[m
+[32m+[m[32m      "license": "MIT",[m
+       "dependencies": {[m
+[31m-        "@babel/runtime": "^7.13.10",[m
+[31m-        "@radix-ui/react-compose-refs": "1.0.1"[m
+[32m+[m[32m        "@radix-ui/react-compose-refs": "1.1.0"[m
+       },[m
+       "peerDependencies": {[m
+         "@types/react": "*",[m
+[31m-        "react": "^16.8 || ^17.0 || ^18.0"[m
+[32m+[m[32m        "react": "^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependenciesMeta": {[m
+[32m+[m[32m        "@types/react": {[m
+[32m+[m[32m          "optional": true[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@radix-ui/react-slot/node_modules/@radix-ui/react-compose-refs": {[m
+[32m+[m[32m      "version": "1.1.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@radix-ui/react-compose-refs/-/react-compose-refs-1.1.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-b4inOtiaOnYf9KWyO3jAeeCG6FeyfY6ldiEPanbUjWd+xIk5wZeHa8yVwmrJ2vderhu/BQvzCrJI0lHd+wIiqw==",[m
+[32m+[m[32m      "license": "MIT",[m
+[32m+[m[32m      "peerDependencies": {[m
+[32m+[m[32m        "@types/react": "*",[m
+[32m+[m[32m        "react": "^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc"[m
+       },[m
+       "peerDependenciesMeta": {[m
+         "@types/react": {[m
+[36m@@ -4305,6 +4455,25 @@[m
+         }[m
+       }[m
+     },[m
+[32m+[m[32m    "node_modules/@radix-ui/react-tooltip/node_modules/@radix-ui/react-slot": {[m
+[32m+[m[32m      "version": "1.0.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@radix-ui/react-slot/-/react-slot-1.0.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-YeTpuq4deV+6DusvVUW4ivBgnkHwECUu0BiN43L5UCDFgdhsRUWAghhTF5MbvNTPzmiFOx90asDSUjWuCNapwg==",[m
+[32m+[m[32m      "license": "MIT",[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "@babel/runtime": "^7.13.10",[m
+[32m+[m[32m        "@radix-ui/react-compose-refs": "1.0.1"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependencies": {[m
+[32m+[m[32m        "@types/react": "*",[m
+[32m+[m[32m        "react": "^16.8 || ^17.0 || ^18.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependenciesMeta": {[m
+[32m+[m[32m        "@types/react": {[m
+[32m+[m[32m          "optional": true[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+     "node_modules/@radix-ui/react-use-callback-ref": {[m
+       "version": "1.0.1",[m
+       "resolved": "https://registry.npmjs.org/@radix-ui/react-use-callback-ref/-/react-use-callback-ref-1.0.1.tgz",[m
+[36m@@ -7309,6 +7478,7 @@[m
+       "version": "0.7.0",[m
+       "resolved": "https://registry.npmjs.org/class-variance-authority/-/class-variance-authority-0.7.0.tgz",[m
+       "integrity": "sha512-jFI8IQw4hczaL4ALINxqLEXQbWcNjoSkloa4IaufXCJr6QawJyw7tuRysRsrE8w2p/4gGaxKIt/hX3qz/IbD1A==",[m
+[32m+[m[32m      "license": "Apache-2.0",[m
+       "dependencies": {[m
+         "clsx": "2.0.0"[m
+       },[m
+[36m@@ -7488,6 +7658,7 @@[m
+       "version": "2.1.1",[m
+       "resolved": "https://registry.npmjs.org/clsx/-/clsx-2.1.1.tgz",[m
+       "integrity": "sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==",[m
+[32m+[m[32m      "license": "MIT",[m
+       "engines": {[m
+         "node": ">=6"[m
+       }[m
+[36m@@ -8133,6 +8304,34 @@[m
+       "integrity": "sha512-VWqjOlPZn70UZ8FTKUOkUvBLeTQ0xpty66qV0yJcAGY2/CthI4xyW9aEozRVtuwv3Kpf5xTesmJUcPwuJmgP4A==",[m
+       "dev": true[m
+     },[m
+[32m+[m[32m    "node_modules/embla-carousel": {[m
+[32m+[m[32m      "version": "8.3.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/embla-carousel/-/embla-carousel-8.3.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-Ve8dhI4w28qBqR8J+aMtv7rLK89r1ZA5HocwFz6uMB/i5EiC7bGI7y+AM80yAVUJw3qqaZYK7clmZMUR8kM3UA==",[m
+[32m+[m[32m      "license": "MIT"[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/embla-carousel-react": {[m
+[32m+[m[32m      "version": "8.3.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/embla-carousel-react/-/embla-carousel-react-8.3.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-P1FlinFDcIvggcErRjNuVqnUR8anyo8vLMIH8Rthgofw7Nj8qTguCa2QjFAbzxAUTQTPNNjNL7yt0BGGinVdFw==",[m
+[32m+[m[32m      "license": "MIT",[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "embla-carousel": "8.3.0",[m
+[32m+[m[32m        "embla-carousel-reactive-utils": "8.3.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependencies": {[m
+[32m+[m[32m        "react": "^16.8.0 || ^17.0.1 || ^18.0.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/embla-carousel-reactive-utils": {[m
+[32m+[m[32m      "version": "8.3.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/embla-carousel-reactive-utils/-/embla-carousel-reactive-utils-8.3.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-EYdhhJ302SC4Lmkx8GRsp0sjUhEN4WyFXPOk0kGu9OXZSRMmcBlRgTvHcq8eKJE1bXWBsOi1T83B+BSSVZSmwQ==",[m
+[32m+[m[32m      "license": "MIT",[m
+[32m+[m[32m      "peerDependencies": {[m
+[32m+[m[32m        "embla-carousel": "8.3.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+     "node_modules/emoji-regex": {[m
+       "version": "8.0.0",[m
+       "resolved": "https://registry.npmjs.org/emoji-regex/-/emoji-regex-8.0.0.tgz",[m
+[36m@@ -10694,6 +10893,7 @@[m
+       "version": "0.356.0",[m
+       "resolved": "https://registry.npmjs.org/lucide-react/-/lucide-react-0.356.0.tgz",[m
+       "integrity": "sha512-MDInjLrmZToccH2UxEshntujBlFwtOofGB22FN/eg39FfGVYV1TT1eMIv2j4rdaTJBpYjUuX7fEo9pwYkNFgwA==",[m
+[32m+[m[32m      "license": "ISC",[m
+       "peerDependencies": {[m
+         "react": "^16.5.1 || ^17.0.0 || ^18.0.0"[m
+       }[m
+[36m@@ -14398,12 +14598,10 @@[m
+       }[m
+     },[m
+     "node_modules/tailwind-merge": {[m
+[31m-      "version": "2.3.0",[m
+[31m-      "resolved": "https://registry.npmjs.org/tailwind-merge/-/tailwind-merge-2.3.0.tgz",[m
+[31m-      "integrity": "sha512-vkYrLpIP+lgR0tQCG6AP7zZXCTLc1Lnv/CCRT3BqJ9CZ3ui2++GPaGb1x/ILsINIMSYqqvrpqjUFsMNLlW99EA==",[m
+[31m-      "dependencies": {[m
+[31m-        "@babel/runtime": "^7.24.1"[m
+[31m-      },[m
+[32m+[m[32m      "version": "2.5.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/tailwind-merge/-/tailwind-merge-2.5.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-kjEBm+pvD+6eAwzJL2Bi+02/9LFLal1Gs61+QB7HvTfQQ0aXwC5LGT8PEt1gS0CWKktKe6ysPTAy3cBC5MeiIg==",[m
+[32m+[m[32m      "license": "MIT",[m
+       "funding": {[m
+         "type": "github",[m
+         "url": "https://github.com/sponsors/dcastil"[m
+[36m@@ -14449,6 +14647,7 @@[m
+       "version": "1.0.7",[m
+       "resolved": "https://registry.npmjs.org/tailwindcss-animate/-/tailwindcss-animate-1.0.7.tgz",[m
+       "integrity": "sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==",[m
+[32m+[m[32m      "license": "MIT",[m
+       "peerDependencies": {[m
+         "tailwindcss": ">=3.0.0 || insiders"[m
+       }[m
+[1mdiff --git a/package.json b/package.json[m
+[1mindex e221b51..19c18bb 100644[m
+[1m--- a/package.json[m
+[1m+++ b/package.json[m
+[36m@@ -70,17 +70,19 @@[m
+   "dependencies": {[m
+     "@hookform/resolvers": "^3.3.4",[m
+     "@radix-ui/react-icons": "^1.3.0",[m
+[32m+[m[32m    "@radix-ui/react-slot": "^1.1.0",[m
+     "chalk": "^5.3.0",[m
+     "class-variance-authority": "^0.7.0",[m
+[31m-    "clsx": "^2.1.0",[m
+[32m+[m[32m    "clsx": "^2.1.1",[m
+     "cmdk": "^1.0.0",[m
+[32m+[m[32m    "embla-carousel-react": "^8.3.0",[m
+     "flowbite": "^2.3.0",[m
+     "fs-extra": "^11.2.0",[m
+     "inquirer": "^9.2.16",[m
+     "lucide-react": "^0.356.0",[m
+     "radix-ui": "^1.0.1",[m
+     "react-hook-form": "^7.51.0",[m
+[31m-    "tailwind-merge": "^2.2.1",[m
+[32m+[m[32m    "tailwind-merge": "^2.5.2",[m
+     "tailwindcss-animate": "^1.0.7",[m
+     "vite": "^5.3.4",[m
+     "zod": "^3.22.4"[m
+[1mdiff --git a/src/components/ui/button.tsx b/src/components/ui/button.tsx[m
+[1mindex 492cef5..de31d90 100644[m
+[1m--- a/src/components/ui/button.tsx[m
+[1m+++ b/src/components/ui/button.tsx[m
+[36m@@ -5,31 +5,24 @@[m [mimport { cva, type VariantProps } from "class-variance-authority";[m
+ import { cn } from "@/lib/utils";[m
+ [m
+ const buttonVariants = cva([m
+[31m-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-gray-950 dark:focus-visible:ring-blue-500 ",[m
+[32m+[m[32m  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",[m
+   {[m
+     variants: {[m
+       variant: {[m
+[31m-        default:[m
+[31m-          "bg-primary text-white hover:bg-primary-hover focus:outline-none focus:ring-4 focus:ring-primary-ring",[m
+[32m+[m[32m        default: "bg-primary text-primary-foreground hover:bg-primary/90",[m
+         destructive:[m
+[31m-          "bg-red-600 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-800",[m
+[32m+[m[32m          "bg-destructive text-destructive-foreground hover:bg-destructive/90",[m
+         outline:[m
+[31m-          "border border-gray-200 bg-background hover:bg-gray-100 dark:hover:bg-gray-600 dark:border-gray-600",[m
+[31m-        outline_destructive:[m
+[31m-          "border border-red-600 text-red-600 dark:text-red-500 hover:bg-red-700 hover:text-white dark:border-red-500 dark:hover:bg-red-600 dark:hover:text-white",[m
+[32m+[m[32m          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",[m
+         secondary:[m
+[31m-          "bg-gray-100 hover:bg-gray-100/80 dark:bg-gray-800 dark:hover:bg-gray-800/80",[m
+[31m-        ghost:[m
+[31m-          "hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-50",[m
+[31m-        link: "underline-offset-4 hover:underline",[m
+[31m-        green:[m
+[31m-          "text-white bg-green-500 hover:bg-green-500/90 dark:bg-green-500 dark:hover:bg-green-500/90",[m
+[32m+[m[32m          "bg-secondary text-secondary-foreground hover:bg-secondary/80",[m
+[32m+[m[32m        ghost: "hover:bg-accent hover:text-accent-foreground",[m
+[32m+[m[32m        link: "text-primary underline-offset-4 hover:underline",[m
+       },[m
+       size: {[m
+[31m-        default: "h-10 px-5 py-2.5 me-2 mb-2 rounded-xl font-medium text-sm",[m
+[31m-        xs: "h-6 rounded-lg px-2",[m
+[31m-        sm: "h-9 rounded-xl px-3",[m
+[31m-        lg: "h-11 rounded-xl px-8",[m
+[32m+[m[32m        default: "h-10 px-4 py-2",[m
+[32m+[m[32m        sm: "h-9 rounded-md px-3",[m
+[32m+[m[32m        lg: "h-11 rounded-md px-8",[m
+         icon: "h-10 w-10",[m
+       },[m
+     },[m
+[1mdiff --git a/src/components/ui/carousel.tsx b/src/components/ui/carousel.tsx[m
+[1mnew file mode 100644[m
+[1mindex 0000000..f2e5456[m
+[1m--- /dev/null[m
+[1m+++ b/src/components/ui/carousel.tsx[m
+[36m@@ -0,0 +1,260 @@[m
+[32m+[m[32mimport * as React from "react";[m
+[32m+[m[32mimport useEmblaCarousel, {[m
+[32m+[m[32m  type UseEmblaCarouselType,[m
+[32m+[m[32m} from "embla-carousel-react";[m
+[32m+[m[32mimport { ArrowLeft, ArrowRight } from "lucide-react";[m
+[32m+[m
+[32m+[m[32mimport { cn } from "@/lib/utils";[m
+[32m+[m[32mimport { Button } from "@/components/ui/button";[m
+[32m+[m
+[32m+[m[32mtype CarouselApi = UseEmblaCarouselType[1];[m
+[32m+[m[32mtype UseCarouselParameters = Parameters<typeof useEmblaCarousel>;[m
+[32m+[m[32mtype CarouselOptions = UseCarouselParameters[0];[m
+[32m+[m[32mtype CarouselPlugin = UseCarouselParameters[1];[m
+[32m+[m
+[32m+[m[32mtype CarouselProps = {[m
+[32m+[m[32m  opts?: CarouselOptions;[m
+[32m+[m[32m  plugins?: CarouselPlugin;[m
+[32m+[m[32m  orientation?: "horizontal" | "vertical";[m
+[32m+[m[32m  setApi?: (api: CarouselApi) => void;[m
+[32m+[m[32m};[m
+[32m+[m
+[32m+[m[32mtype CarouselContextProps = {[m
+[32m+[m[32m  carouselRef: ReturnType<typeof useEmblaCarousel>[0];[m
+[32m+[m[32m  api: ReturnType<typeof useEmblaCarousel>[1];[m
+[32m+[m[32m  scrollPrev: () => void;[m
+[32m+[m[32m  scrollNext: () => void;[m
+[32m+[m[32m  canScrollPrev: boolean;[m
+[32m+[m[32m  canScrollNext: boolean;[m
+[32m+[m[32m} & CarouselProps;[m
+[32m+[m
+[32m+[m[32mconst CarouselContext = React.createContext<CarouselContextProps | null>(null);[m
+[32m+[m
+[32m+[m[32mfunction useCarousel() {[m
+[32m+[m[32m  const context = React.useContext(CarouselContext);[m
+[32m+[m
+[32m+[m[32m  if (!context) {[m
+[32m+[m[32m    throw new Error("useCarousel must be used within a <Carousel />");[m
+[32m+[m[32m  }[m
+[32m+[m
+[32m+[m[32m  return context;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mconst Carousel = React.forwardRef<[m
+[32m+[m[32m  HTMLDivElement,[m
+[32m+[m[32m  React.HTMLAttributes<HTMLDivElement> & CarouselProps[m
+[32m+[m[32m>([m
+[32m+[m[32m  ([m
+[32m+[m[32m    {[m
+[32m+[m[32m      orientation = "horizontal",[m
+[32m+[m[32m      opts,[m
+[32m+[m[32m      setApi,[m
+[32m+[m[32m      plugins,[m
+[32m+[m[32m      className,[m
+[32m+[m[32m      children,[m
+[32m+[m[32m      ...props[m
+[32m+[m[32m    },[m
+[32m+[m[32m    ref[m
+[32m+[m[32m  ) => {[m
+[32m+[m[32m    const [carouselRef, api] = useEmblaCarousel([m
+[32m+[m[32m      {[m
+[32m+[m[32m        ...opts,[m
+[32m+[m[32m        axis: orientation === "horizontal" ? "x" : "y",[m
+[32m+[m[32m      },[m
+[32m+[m[32m      plugins[m
+[32m+[m[32m    );[m
+[32m+[m[32m    const [canScrollPrev, setCanScrollPrev] = React.useState(false);[m
+[32m+[m[32m    const [canScrollNext, setCanScrollNext] = React.useState(false);[m
+[32m+[m
+[32m+[m[32m    const onSelect = React.useCallback((api: CarouselApi) => {[m
+[32m+[m[32m      if (!api) {[m
+[32m+[m[32m        return;[m
+[32m+[m[32m      }[m
+[32m+[m
+[32m+[m[32m      setCanScrollPrev(api.canScrollPrev());[m
+[32m+[m[32m      setCanScrollNext(api.canScrollNext());[m
+[32m+[m[32m    }, []);[m
+[32m+[m
+[32m+[m[32m    const scrollPrev = React.useCallback(() => {[m
+[32m+[m[32m      api?.scrollPrev();[m
+[32m+[m[32m    }, [api]);[m
+[32m+[m
+[32m+[m[32m    const scrollNext = React.useCallback(() => {[m
+[32m+[m[32m      api?.scrollNext();[m
+[32m+[m[32m    }, [api]);[m
+[32m+[m
+[32m+[m[32m    const handleKeyDown = React.useCallback([m
+[32m+[m[32m      (event: React.KeyboardEvent<HTMLDivElement>) => {[m
+[32m+[m[32m        if (event.key === "ArrowLeft") {[m
+[32m+[m[32m          event.preventDefault();[m
+[32m+[m[32m          scrollPrev();[m
+[32m+[m[32m        } else if (event.key === "ArrowRight") {[m
+[32m+[m[32m          event.preventDefault();[m
+[32m+[m[32m          scrollNext();[m
+[32m+[m[32m        }[m
+[32m+[m[32m      },[m
+[32m+[m[32m      [scrollPrev, scrollNext][m
+[32m+[m[32m    );[m
+[32m+[m
+[32m+[m[32m    React.useEffect(() => {[m
+[32m+[m[32m      if (!api || !setApi) {[m
+[32m+[m[32m        return;[m
+[32m+[m[32m      }[m
+[32m+[m
+[32m+[m[32m      setApi(api);[m
+[32m+[m[32m    }, [api, setApi]);[m
+[32m+[m
+[32m+[m[32m    React.useEffect(() => {[m
+[32m+[m[32m      if (!api) {[m
+[32m+[m[32m        return;[m
+[32m+[m[32m      }[m
+[32m+[m
+[32m+[m[32m      onSelect(api);[m
+[32m+[m[32m      api.on("reInit", onSelect);[m
+[32m+[m[32m      api.on("select", onSelect);[m
+[32m+[m
+[32m+[m[32m      return () => {[m
+[32m+[m[32m        api?.off("select", onSelect);[m
+[32m+[m[32m      };[m
+[32m+[m[32m    }, [api, onSelect]);[m
+[32m+[m
+[32m+[m[32m    return ([m
+[32m+[m[32m      <CarouselContext.Provider[m
+[32m+[m[32m        value={{[m
+[32m+[m[32m          carouselRef,[m
+[32m+[m[32m          api: api,[m
+[32m+[m[32m          opts,[m
+[32m+[m[32m          orientation:[m
+[32m+[m[32m            orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),[m
+[32m+[m[32m          scrollPrev,[m
+[32m+[m[32m          scrollNext,[m
+[32m+[m[32m          canScrollPrev,[m
+[32m+[m[32m          canScrollNext,[m
+[32m+[m[32m        }}[m
+[32m+[m[32m      >[m
+[32m+[m[32m        <div[m
+[32m+[m[32m          ref={ref}[m
+[32m+[m[32m          onKeyDownCapture={handleKeyDown}[m
+[32m+[m[32m          className={cn("relative", className)}[m
+[32m+[m[32m          role="region"[m
+[32m+[m[32m          aria-roledescription="carousel"[m
+[32m+[m[32m          {...props}[m
+[32m+[m[32m        >[m
+[32m+[m[32m          {children}[m
+[32m+[m[32m        </div>[m
+[32m+[m[32m      </CarouselContext.Provider>[m
+[32m+[m[32m    );[m
+[32m+[m[32m  }[m
+[32m+[m[32m);[m
+[32m+[m[32mCarousel.displayName = "Carousel";[m
+[32m+[m
+[32m+[m[32mconst CarouselContent = React.forwardRef<[m
+[32m+[m[32m  HTMLDivElement,[m
+[32m+[m[32m  React.HTMLAttributes<HTMLDivElement>[m
+[32m+[m[32m>(({ className, ...props }, ref) => {[m
+[32m+[m[32m  const { carouselRef, orientation } = useCarousel();[m
+[32m+[m
+[32m+[m[32m  return ([m
+[32m+[m[32m    <div ref={carouselRef} className="overflow-hidden">[m
+[32m+[m[32m      <div[m
+[32m+[m[32m        ref={ref}[m
+[32m+[m[32m        className={cn([m
+[32m+[m[32m          "flex",[m
+[32m+[m[32m          orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",[m
+[32m+[m[32m          className[m
+[32m+[m[32m        )}[m
+[32m+[m[32m        {...props}[m
+[32m+[m[32m      />[m
+[32m+[m[32m    </div>[m
+[32m+[m[32m  );[m
+[32m+[m[32m});[m
+[32m+[m[32mCarouselContent.displayName = "CarouselContent";[m
+[32m+[m
+[32m+[m[32mconst CarouselItem = React.forwardRef<[m
+[32m+[m[32m  HTMLDivElement,[m
+[32m+[m[32m  React.HTMLAttributes<HTMLDivElement>[m
+[32m+[m[32m>(({ className, ...props }, ref) => {[m
+[32m+[m[32m  const { orientation } = useCarousel();[m
+[32m+[m
+[32m+[m[32m  return ([m
+[32m+[m[32m    <div[m
+[32m+[m[32m      ref={ref}[m
+[32m+[m[32m      role="group"[m
+[32m+[m[32m      aria-roledescription="slide"[m
+[32m+[m[32m      className={cn([m
+[32m+[m[32m        "min-w-0 shrink-0 grow-0 basis-full",[m
+[32m+[m[32m        orientation === "horizontal" ? "pl-4" : "pt-4",[m
+[32m+[m[32m        className[m
+[32m+[m[32m      )}[m
+[32m+[m[32m      {...props}[m
+[32m+[m[32m    />[m
+[32m+[m[32m  );[m
+[32m+[m[32m});[m
+[32m+[m[32mCarouselItem.displayName = "CarouselItem";[m
+[32m+[m
+[32m+[m[32mconst CarouselPrevious = React.forwardRef<[m
+[32m+[m[32m  HTMLButtonElement,[m
+[32m+[m[32m  React.ComponentProps<typeof Button>[m
+[32m+[m[32m>(({ className, variant = "outline", size = "icon", ...props }, ref) => {[m
+[32m+[m[32m  const { orientation, scrollPrev, canScrollPrev } = useCarousel();[m
+[32m+[m
+[32m+[m[32m  return ([m
+[32m+[m[32m    <Button[m
+[32m+[m[32m      ref={ref}[m
+[32m+[m[32m      variant={variant}[m
+[32m+[m[32m      size={size}[m
+[32m+[m[32m      className={cn([m
+[32m+[m[32m        "absolute  h-8 w-8 rounded-full",[m
+[32m+[m[32m        orientation === "horizontal"[m
+[32m+[m[32m          ? "-left-12 top-1/2 -translate-y-1/2"[m
+[32m+[m[32m          : "-top-12 left-1/2 -translate-x-1/2 rotate-90",[m
+[32m+[m[32m        className[m
+[32m+[m[32m      )}[m
+[32m+[m[32m      disabled={!canScrollPrev}[m
+[32m+[m[32m      onClick={scrollPrev}[m
+[32m+[m[32m      {...props}[m
+[32m+[m[32m    >[m
+[32m+[m[32m      <ArrowLeft className="h-4 w-4" />[m
+[32m+[m[32m      <span className="sr-only">Previous slide</span>[m
+[32m+[m[32m    </Button>[m
+[32m+[m[32m  );[m
+[32m+[m[32m});[m
+[32m+[m[32mCarouselPrevious.displayName = "CarouselPrevious";[m
+[32m+[m
+[32m+[m[32mconst CarouselNext = React.forwardRef<[m
+[32m+[m[32m  HTMLButtonElement,[m
+[32m+[m[32m  React.ComponentProps<typeof Button>[m
+[32m+[m[32m>(({ className, variant = "outline", size = "icon", ...props }, ref) => {[m
+[32m+[m[32m  const { orientation, scrollNext, canScrollNext } = useCarousel();[m
+[32m+[m
+[32m+[m[32m  return ([m
+[32m+[m[32m    <Button[m
+[32m+[m[32m      ref={ref}[m
+[32m+[m[32m      variant={variant}[m
+[32m+[m[32m      size={size}[m
+[32m+[m[32m      className={cn([m
+[32m+[m[32m        "absolute h-8 w-8 rounded-full",[m
+[32m+[m[32m        orientation === "horizontal"[m
+[32m+[m[32m          ? "-right-12 top-1/2 -translate-y-1/2"[m
+[32m+[m[32m          : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",[m
+[32m+[m[32m        className[m
+[32m+[m[32m      )}[m
+[32m+[m[32m      disabled={!canScrollNext}[m
+[32m+[m[32m      onClick={scrollNext}[m
+[32m+[m[32m      {...props}[m
+[32m+[m[32m    >[m
+[32m+[m[32m      <ArrowRight className="h-4 w-4" />[m
+[32m+[m[32m      <span className="sr-only">Next slide</span>[m
+[32m+[m[32m    </Button>[m
+[32m+[m[32m  );[m
+[32m+[m[32m});[m
+[32m+[m[32mCarouselNext.displayName = "CarouselNext";[m
+[32m+[m
+[32m+[m[32mexport {[m
+[32m+[m[32m  type CarouselApi,[m
+[32m+[m[32m  Carousel,[m
+[32m+[m[32m  CarouselContent,[m
+[32m+[m[32m  CarouselItem,[m
+[32m+[m[32m  CarouselPrevious,[m
+[32m+[m[32m  CarouselNext,[m
+[32m+[m[32m};[m
+[1mdiff --git a/src/lib/utils.ts b/src/lib/utils.ts[m
+[1mindex df800bb..a5ef193 100644[m
+[1m--- a/src/lib/utils.ts[m
+[1m+++ b/src/lib/utils.ts[m
+[36m@@ -1,170 +1,6 @@[m
+[31m-import { type ClassValue, clsx } from "clsx";[m
+[32m+[m[32mimport { clsx, type ClassValue } from "clsx";[m
+ import { twMerge } from "tailwind-merge";[m
+[31m-import { ZodIssue } from "zod";[m
+ [m
+ export function cn(...inputs: ClassValue[]) {[m
+   return twMerge(clsx(inputs));[m
+ }[m
+[31m-[m
+[31m-export async function fetcher<JSON = any>([m
+[31m-  input: RequestInfo,[m
+[31m-  init?: RequestInit[m
+[31m-): Promise<JSON> {[m
+[31m-  const response = await fetch(input, { ...init, cache: "no-store" });[m
+[31m-  return response.json();[m
+[31m-}[m
+[31m-[m
+[31m-export const capitalize = (s: string) => {[m
+[31m-  if (typeof s !== "string") return "";[m
+[31m-  return s.charAt(0).toUpperCase() + s.slice(1);[m
+[31m-};[m
+[31m-[m
+[31m-export const truncate = (str: string, num: number) => {[m
+[31m-  if (!str) return "";[m
+[31m-  if (str.length <= num) {[m
+[31m-    return str;[m
+[31m-  }[m
+[31m-  return str.slice(0, num) + "...";[m
+[31m-};[m
+[31m-[m
+[31m-export const toDateString = (date: Date) => {[m
+[31m-  return new Date(date).toLocaleDateString("en-US", {[m
+[31m-    month: "short",[m
+[31m-    day: "numeric",[m
+[31m-    year: "numeric",[m
+[31m-  });[m
+[31m-};[m
+[31m-[m
+[31m-export function createDateAsUTC(date: Date) {[m
+[31m-  console.log(date.getFullYear(), date.getMonth(), date.getDate());[m
+[31m-  return new Date([m
+[31m-    Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())[m
+[31m-  );[m
+[31m-}[m
+[31m-[m
+[31m-export function convertDateToUTC(date: Date) {[m
+[31m-  console.log(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());[m
+[31m-  return new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());[m
+[31m-}[m
+[31m-[m
+[31m-export const random = (min: number, max: number) => {[m
+[31m-  return Math.floor(Math.random() * (max - min + 1) + min);[m
+[31m-};[m
+[31m-[m
+[31m-export function getKey(object: any, key: string) {[m
+[31m-  if (key.includes(".")) {[m
+[31m-    const keys = key.split(".");[m
+[31m-    let value = object;[m
+[31m-    for (let i = 0; i < keys.length; i++) {[m
+[31m-      if (!value) return "";[m
+[31m-      value = value[keys[i]];[m
+[31m-    }[m
+[31m-    return value;[m
+[31m-  }[m
+[31m-[m
+[31m-  return object[key];[m
+[31m-}[m
+[31m-[m
+[31m-export const template = (tpl: string, args: any): string =>[m
+[31m-  tpl.replace(/\${(\w+)}/g, (_, v) => getKey(args, v));[m
+[31m-[m
+[31m-/**[m
+[31m- * Transforms a POJO into a FormData.[m
+[31m- * How to use: When you have a <form onSubmit={form.HandleSubmit(submittingFunction)} ...[m
+[31m- * In your submittingFunction you do:[m
+[31m- * function submittingFunction(data) {[m
+[31m- *  const formData = toFormData(data); //Transform to formData[m
+[31m- *  const result = JSON.parse(myServerAction(formData))[m
+[31m- *  ... //Do what you want with the response :)[m
+[31m- * @param input An POJO containing the form data.[m
+[31m- * @returns A FormData version of the input object with any non string/blob/Date(They get .toString() instead of JSON.stringified) values JSON.stringified.[m
+[31m- */[m
+[31m-export function toFormData(input: any): FormData {[m
+[31m-  const env = process.env.NODE_ENV;[m
+[31m-  const formData = new FormData();[m
+[31m-  for (const [key, value] of Object.entries(input)) {[m
+[31m-    if (typeof value === "string") {[m
+[31m-      formData.append(key, value);[m
+[31m-    } else if (value instanceof File) {[m
+[31m-      formData.append(key, value, sanitizeString(value.name));[m
+[31m-    } else if (value instanceof Date) {[m
+[31m-      //@ts-ignore[m
+[31m-      formData.append(key, value);[m
+[31m-    } else {[m
+[31m-      if (env === "development") {[m
+[31m-        console.log("JSON.stringifying an object, be careful with this.");[m
+[31m-      }[m
+[31m-      formData.append(key, JSON.stringify(value));[m
+[31m-    }[m
+[31m-  }[m
+[31m-  return formData;[m
+[31m-}[m
+[31m-[m
+[31m-/**[m
+[31m- * error: {[m
+[31m- *   issues: [{[m
+[31m- *     message: //message[m
+[31m- *       path: //fieldName[m
+[31m- *     }]}*/[m
+[31m-[m
+[31m-export function formatZodIssue(issue: ZodIssue) {[m
+[31m-  if (!issue.path) {[m
+[31m-    return `Error: ${issue.message}`;[m
+[31m-  }[m
+[31m-  return `Error on field '${issue.path}': ${issue.message}`;[m
+[31m-}[m
+[31m-[m
+[31m-//Basically URI encode except instead of encoding the characters that arn't URI characters[m
+[31m-// we yeet them.[m
+[31m-export function sanitizeString(str: string) {[m
+[31m-  return str[m
+[31m-    .normalize("NFD")[m
+[31m-    .replace(/\p{Diacritic}/gu, "")[m
+[31m-    .replace(/\s/g, "-")[m
+[31m-    .replace(/[^a-zA-Z0-9-_.!~*'();/?:@&=+$,#%]/g, "");[m
+[31m-}[m
+[31m-[m
+[31m-/**[m
+[31m- *[m
+[31m- * @param data[m
+[31m- * @returns { current: any[], past: any[] } //Can we add field assertion?[m
+[31m- */[m
+[31m-export function filterByDate([m
+[31m-  data: any[] //How do you do any[] that has the field endDate?[m
+[31m-) {[m
+[31m-  const todayDateWithoutTime = new Date();[m
+[31m-  todayDateWithoutTime.setHours(0, 0, 0, 0); //If we end up adding a time picker to the events, we should change use a different function.[m
+[31m-[m
+[31m-  const current = data.filter((item: any) => {[m
+[31m-    return item.endDate >= todayDateWithoutTime;[m
+[31m-  });[m
+[31m-[m
+[31m-  const past = data.filter((item: any) => {[m
+[31m-    return item.endDate < todayDateWithoutTime;[m
+[31m-  });[m
+[31m-[m
+[31m-  return { current, past };[m
+[31m-}[m
+[31m-[m
+[31m-export const regexEscape = (string: string) => {[m
+[31m-  const specials = [[m
+[31m-    "/",[m
+[31m-    ".",[m
+[31m-    "*",[m
+[31m-    "+",[m
+[31m-    "?",[m
+[31m-    "|",[m
+[31m-    "(",[m
+[31m-    ")",[m
+[31m-    "[",[m
+[31m-    "]",[m
+[31m-    "{",[m
+[31m-    "}",[m
+[31m-    "\\",[m
+[31m-  ];[m
+[31m-[m
+[31m-  return string.replace([m
+[31m-    new RegExp("(\\" + specials.join("|\\") + ")", "g"),[m
+[31m-    "\\$1"[m
+[31m-  );[m
+[31m-};[m
+[1mdiff --git a/src/stories/Carousel.stories.tsx b/src/stories/Carousel.stories.tsx[m
+[1mnew file mode 100644[m
+[1mindex 0000000..62ad68f[m
+[1m--- /dev/null[m
+[1m+++ b/src/stories/Carousel.stories.tsx[m
+[36m@@ -0,0 +1,41 @@[m
+[32m+[m[32mimport type { Meta, StoryObj } from "@storybook/react";[m
+[32m+[m[32mimport {[m
+[32m+[m[32m  Carousel,[m
+[32m+[m[32m  CarouselContent,[m
+[32m+[m[32m  CarouselItem,[m
+[32m+[m[32m  CarouselNext,[m
+[32m+[m[32m  CarouselPrevious,[m
+[32m+[m[32m} from "@/components/ui/carousel";[m
+[32m+[m[32mimport { Card, CardContent } from "@/components/ui/card";[m
+[32m+[m
+[32m+[m[32mconst meta: Meta<typeof Carousel> = {[m
+[32m+[m[32m  title: "Example/Carousel",[m
+[32m+[m[32m  component: Carousel,[m
+[32m+[m[32m  tags: ["autodocs"],[m
+[32m+[m[32m};[m
+[32m+[m
+[32m+[m[32mexport default meta;[m
+[32m+[m
+[32m+[m[32mtype Story = StoryObj<typeof Carousel>;[m
+[32m+[m
+[32m+[m[32mexport const Default: Story = {[m
+[32m+[m[32m  render: () => ([m
+[32m+[m[32m    <Carousel className="w-full max-w-xs">[m
+[32m+[m[32m      <CarouselContent>[m
+[32m+[m[32m        {Array.from({ length: 
